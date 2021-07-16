@@ -26,14 +26,14 @@ const client = new ApolloClient({
 //   `
 // })
 // .then(result=>console.log(result))
-interface TodoType {
-  title: string;
-  completed: boolean;
-}
-interface TodoTypeData {
-  todoType: TodoType[];
-}
- 
+// interface TodoType {
+//   title: string;
+//   completed: boolean;
+// }
+// interface TodoTypeData {
+//   todoType: TodoType[];
+// }
+  
 
 const TODOS=gql`
     query GetTodo{
@@ -44,28 +44,26 @@ const TODOS=gql`
     }
 `
 
-// function Display(){
-//   const{loading, error, data}=useQuery <TodoTypeData> (TODOS)
-//   if(loading) return <p>Laoding....</p>
-//   if(error) return <p>Error occurs</p>
-   
-//   console.log(data)
-//   return data?.todo.map(({ title, completed }) => (
-//     <div key={title}>
-//       <p>
-//         {title}: {completed}
-//       </p>
-//     </div>
-//   ))
+function Display(){
+  const{loading, error, data}=useQuery (TODOS)
+  if(loading) return <p>Laoding....</p>
+  if(error) return <p>Error occurs</p>
+    
+  if(loading || !data) return <div>loading...</div>
+  return(
+    <div>
+      <pre>{JSON.stringify(data,null,2)}</pre>
+    </div>
+  )
 
-// }
+}
 
 function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
           <h1>Lou Team</h1>
-           
+          <Display />
       </div>
     </ApolloProvider>
   );

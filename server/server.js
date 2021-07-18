@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express');// build web applications in node.js
 const {graphqlHTTP} = require('express-graphql'); //support connect styled middleware
 const cors = require('cors'); //allow cross-origin
 const schema = require('./schema');

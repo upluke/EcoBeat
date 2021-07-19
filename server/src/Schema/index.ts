@@ -1,10 +1,12 @@
 import {GraphQLSchema,GraphQLObjectType}from 'graphql'; 
 import { GET_USER } from './Queries/User';
+import { GET_TODO } from './Queries/Todo';
 
 const RootQuery= new GraphQLObjectType({
     name:'RootQuery',
     fields:{
-        getUser:GET_USER //getUser(id:"1"){
+        getUser:GET_USER, //getUser(id:"1"){
+        getTodo:GET_TODO
     }
 });
 

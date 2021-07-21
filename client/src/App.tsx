@@ -6,7 +6,7 @@ import {
   ApolloProvider,
   useQuery,
   gql
-} from "@apollo/client";
+} from "@apollo/client"; //server component handling graphQL requests
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',

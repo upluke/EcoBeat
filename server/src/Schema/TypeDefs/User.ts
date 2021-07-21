@@ -19,7 +19,7 @@ import {
 export const UserType = new GraphQLObjectType({
     name:'User',
     fields:() => ({
-        id: {type:GraphQLString},
+        id: {type:GraphQLID},
         username: {type: GraphQLString},
         ecopoints:{type:GraphQLInt},
         email: {type: GraphQLString},

@@ -1,9 +1,9 @@
-import {Entity, Column, BaseEntity, PrimaryGeneratedColumn} from "typeorm"; 
+import {Entity, Column, BaseEntity, ObjectIdColumn} from "typeorm"; 
 
 @Entity() //entity decorator
 export class Users extends BaseEntity {  
 
-   @PrimaryGeneratedColumn() 
+   @ObjectIdColumn() 
    id!: string; 
    
    @Column() 

@@ -15,7 +15,7 @@ const main =async()=>{
     url:'mongodb+srv://EcoBeats:mongodb@ecobeatscluster.tpjzg.mongodb.net/test',
     synchronize:true,
     useUnifiedTopology:false, //false until database is ready
-    entities:[Users]
+    entities:["./src/Entities/*.ts"]
   })
 
   const app = express(); //initialize express so that all the diddlewres can be applied

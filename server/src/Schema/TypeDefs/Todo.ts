@@ -7,7 +7,7 @@ import {
 }from 'graphql'; //graphQL types
 
 
-// Todo type
+//Todo type
 export const TodoType=new GraphQLObjectType({
     name:'Todo',
     fields:()=>({
@@ -17,3 +17,15 @@ export const TodoType=new GraphQLObjectType({
         completed:{type:GraphQLBoolean}
     })
 })
+
+// Card Type
+// export const CardType=new GraphQLObjectType({
+//     name:'Card',
+//     fields:()=>({
+//         id:{type:GraphQLInt},
+//         title:{type:GraphQLInt},
+//         ecopoints:{type:GraphQLString},
+//         description:{type:GraphQLString},
+//         completed:{type:GraphQLBoolean}
+//     })
+// })

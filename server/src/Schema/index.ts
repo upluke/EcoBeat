@@ -24,5 +24,5 @@ const Mutation= new GraphQLObjectType({
 
 export const schema=new GraphQLSchema({
     query: RootQuery,
-    // mutation:Mutation
+    mutation:Mutation
 });

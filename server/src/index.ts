@@ -4,8 +4,7 @@ import cors from 'cors'; //allow cross-origin
 import { createConnection } from 'typeorm'; // create a connection between a database and application
 // const schema = require('../schema');
 import {schema} from './Schema'
-import { Users } from './Entities/Users';
-
+// import { Users } from './Entities/Users';
 
 
 const main =async()=>{
@@ -13,6 +12,7 @@ const main =async()=>{
   await createConnection({
     type:'mongodb',
     url:'mongodb+srv://EcoBeats:mongodb@ecobeatscluster.tpjzg.mongodb.net/test',
+    // url:'mongodb+srv://EcoBeats:mongodb@ecobeatscluster.tpjzg.mongodb.net/PlayerInfoCollection?retryWrites=true&w=majority',
     synchronize:true,
     useUnifiedTopology:false, //false until database is ready
     entities:["./src/Entities/*.ts"]

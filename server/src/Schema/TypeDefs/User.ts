@@ -25,3 +25,6 @@ export const UserType = new GraphQLObjectType({
         email: {type: GraphQLString},
     })
 });
+
+
+ 

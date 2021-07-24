@@ -12,7 +12,6 @@ const main =async()=>{
   await createConnection({
     type:'mongodb',
     url:'mongodb+srv://EcoBeats:mongodb@ecobeatscluster.tpjzg.mongodb.net/test',
-    // url:'mongodb+srv://EcoBeats:mongodb@ecobeatscluster.tpjzg.mongodb.net/PlayerInfoCollection?retryWrites=true&w=majority',
     synchronize:true,
     useUnifiedTopology:false, //false until database is ready
     entities:["./src/Entities/*.ts"]

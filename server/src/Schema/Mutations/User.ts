@@ -8,12 +8,12 @@ export const CREATE_USER={
     args:{
         id: {type:GraphQLID},
         username: {type: GraphQLString},
-        ecopoints:{type:GraphQLInt},
         email: {type: GraphQLString},
+        ecopoints:{type:GraphQLInt},
     },
     resolve(parent:any, args:any){
-        const {id,username, ecopoints,email}=args;
-        Users.insert({id, username,ecopoints, email})
+        const {id,username, email,ecopoints}=args;
+        Users.insert({id, username,email,ecopoints})
         return args;
     }
 }

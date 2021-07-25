@@ -1,5 +1,5 @@
 import {GraphQLSchema,GraphQLObjectType}from 'graphql'; 
-import { CREATE_CARD } from './Mutations/Card';
+import { CREATE_CARD, DELETE_CARD } from './Mutations/Card';
 // import { GET_USER } from './Queries/User';
 // import { GET_TODO } from './Queries/Todo';
 import { CREATE_USER } from './Mutations/User';
@@ -22,7 +22,8 @@ const Mutation= new GraphQLObjectType({
     name:'Mutation',
     fields:{
         createUser:CREATE_USER,
-        createCard:CREATE_CARD
+        createCard:CREATE_CARD,
+        deleteCard:DELETE_CARD
     }
 });
 

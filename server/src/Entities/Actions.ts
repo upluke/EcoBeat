@@ -1,16 +1,16 @@
 import {Entity, Column, BaseEntity, ObjectIdColumn,ObjectID} from "typeorm"; 
 
 @Entity()  
-export class Cards extends BaseEntity {  
+export class Actions extends BaseEntity {  
 
    @ObjectIdColumn() 
    id!: ObjectID; 
    
    @Column() 
-   cardName!: string; 
+   actionName!: string; 
 
    @Column() 
-   cardDescription!: string; 
+   actionDescription!: string; 
 
    @Column() 
    ecopoints!: number; 

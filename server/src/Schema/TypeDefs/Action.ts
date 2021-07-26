@@ -18,13 +18,13 @@ import {
 //     })
 // })
 
-// Card Type
-export const CardType=new GraphQLObjectType({
-    name:'Card',
+// Action Type
+export const ActionType=new GraphQLObjectType({
+    name:'Action',
     fields:()=>({
         id:{type:GraphQLID},
-        cardName:{type:GraphQLString},
-        cardDescription:{type:GraphQLString},
+        actionName:{type:GraphQLString},
+        actionDescription:{type:GraphQLString},
         ecopoints:{type:GraphQLInt},
         completed:{type:GraphQLBoolean}
     })

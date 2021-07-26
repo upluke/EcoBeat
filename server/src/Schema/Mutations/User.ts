@@ -6,14 +6,13 @@ import {Users} from '../../Entities/Users'
 export const CREATE_USER={
     type:UserType,
     args:{
-        id: {type:GraphQLID},
         username: {type: GraphQLString},
         email: {type: GraphQLString},
         ecopoints:{type:GraphQLInt},
     },
     resolve(parent:any, args:any){
-        const {id,username, email,ecopoints}=args;
-        Users.insert({id, username,email,ecopoints})
+        const {username, email,ecopoints}=args;
+        Users.insert({username,email,ecopoints})
         return args;
     }
 }

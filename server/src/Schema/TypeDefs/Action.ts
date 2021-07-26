@@ -25,7 +25,7 @@ export const ActionType=new GraphQLObjectType({
         id:{type:GraphQLID},
         actionName:{type:GraphQLString},
         actionDescription:{type:GraphQLString},
-        ecopoints:{type:GraphQLInt},
-        completed:{type:GraphQLBoolean}
+        // ecopoints:{type:GraphQLInt},
+        // completed:{type:GraphQLBoolean}
     })
 })

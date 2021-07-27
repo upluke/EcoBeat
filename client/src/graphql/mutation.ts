@@ -5,18 +5,18 @@ export const CREATE_ACTION=gql`
     mutation createAction(
         $actionName:String!
         $actionDescription:String!
-        # $ecopoints:Int!
+        $ecopoints:Int!
         
     ){
         createAction(
             actionName:$actionName
             actionDescription:$actionDescription
-            # ecopoints:$ecopoints
+            ecopoints:$ecopoints
             
         ){
             actionName
             actionDescription
-            # ecopoints
+            ecopoints
            
         }
     }

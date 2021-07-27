@@ -12,9 +12,7 @@ export const CREATE_ACTION={
         completed:{type:GraphQLBoolean}
     },
     async resolve(parent:any, args:any){
-        // const {actionName, actionDescription,ecopoints,completed}=args;
-        // await Actions.insert({actionName,actionDescription,ecopoints,completed})
-        const {actionName, actionDescription, ecopoints,completed=false}=args;
+        const {actionName, actionDescription,ecopoints,completed=false}=args;
         await Actions.insert({actionName,actionDescription,ecopoints,completed})
         return args;
     }

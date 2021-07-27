@@ -7,7 +7,7 @@ import { CREATE_ACTION } from '../../graphql/mutation';
 const CreateAction: React.FC=()=>{
     const [actionName, setActionName]=useState("")
     const [actionDescription, setaActionDescription]=useState("")
-    const [ecopoints, setEcopoints]=useState("")
+    const [ecopoints, setEcopoints]=useState(0)
 
     const [createAction, {error}]=useMutation(CREATE_ACTION)
     console.log(error)
@@ -31,7 +31,7 @@ const CreateAction: React.FC=()=>{
                 type="number" 
                 placeholder="actionDescription" 
                 onChange={(e)=>{
-                    setEcopoints(e.target.value)
+                    setEcopoints(parseInt(e.target.value))
                 }}
             />
             <button

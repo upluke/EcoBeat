@@ -2,15 +2,17 @@ import React,{useState} from 'react'
 import {
     useMutation
   } from "@apollo/client"; 
-import { CREATE_ACTION } from '../../graphql/mutation';
+import { CREATE_ACTION } from '../../graphql/mutations';
 
 const CreateAction: React.FC=()=>{
     const [actionName, setActionName]=useState("")
     const [actionDescription, setaActionDescription]=useState("")
     const [ecopoints, setEcopoints]=useState(0)
 
-    const [createAction, {error}]=useMutation(CREATE_ACTION)
+    const [createAction, {loading,data, error}]=useMutation(CREATE_ACTION)
     console.log(error)
+    if (loading) return <h1>Loading...</h1>;
+    if (error) return <h1>Something went wrong!</h1>;
     return(
         <div>
             <input 

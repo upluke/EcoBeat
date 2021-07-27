@@ -12,11 +12,11 @@ export class Actions extends BaseEntity {
    @Column() 
    actionDescription!: string; 
 
-   // @Column() 
-   // ecopoints!: number; 
+   @Column() 
+   ecopoints!: number; 
 
-   // @Column() 
-   // completed!: boolean; 
+   @Column() 
+   completed!: boolean; 
 
 }
  

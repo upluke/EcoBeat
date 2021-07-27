@@ -7,7 +7,7 @@ import { CREATE_ACTION } from '../../graphql/mutation';
 const CreateAction: React.FC=()=>{
     const [actionName, setActionName]=useState("")
     const [actionDescription, setaActionDescription]=useState("")
- 
+    const [ecopoints, setEcopoints]=useState("")
 
     const [createAction, {error}]=useMutation(CREATE_ACTION)
     console.log(error)
@@ -27,11 +27,17 @@ const CreateAction: React.FC=()=>{
                     setaActionDescription(e.target.value)
                 }}
             />
- 
+           <input 
+                type="number" 
+                placeholder="actionDescription" 
+                onChange={(e)=>{
+                    setEcopoints(e.target.value)
+                }}
+            />
             <button
                 onClick={()=>{
                     createAction({
-                        variables:{actionName:actionName, actionDescription:actionDescription }
+                        variables:{actionName:actionName, actionDescription:actionDescription, ecopoints:ecopoints }
                     })
                 }}
             >Create Card</button>

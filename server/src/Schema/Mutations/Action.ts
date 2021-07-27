@@ -8,14 +8,14 @@ export const CREATE_ACTION={
     args:{
         actionName: {type: GraphQLString},
         actionDescription: {type: GraphQLString},
-        // ecopoints:{type:GraphQLInt},
-        // completed:{type:GraphQLBoolean}
+        ecopoints:{type:GraphQLInt},
+        completed:{type:GraphQLBoolean}
     },
     async resolve(parent:any, args:any){
         // const {actionName, actionDescription,ecopoints,completed}=args;
         // await Actions.insert({actionName,actionDescription,ecopoints,completed})
-        const {actionName, actionDescription}=args;
-        await Actions.insert({actionName,actionDescription})
+        const {actionName, actionDescription, ecopoints,completed=false}=args;
+        await Actions.insert({actionName,actionDescription,ecopoints,completed})
         return args;
     }
 }

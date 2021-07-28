@@ -5,8 +5,8 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from "@apollo/client"; //server component handling graphQL requests
-import CreateAction from './components/CreateAction';
-import ActionList from './components/ActionList';
+
+import HomePage from './pages/HomePage';
 
 
 const client = new ApolloClient({
@@ -20,8 +20,7 @@ function App() {
     <ApolloProvider client={client}>
       <div className="App">
           <h1>Lou Team</h1>
-          <CreateAction/>
-          <ActionList/>
+          <HomePage />
       </div>
     </ApolloProvider>
   );

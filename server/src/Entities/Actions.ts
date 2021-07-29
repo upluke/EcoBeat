@@ -1,4 +1,5 @@
-import {Entity, Column, BaseEntity, ObjectIdColumn,ObjectID} from "typeorm"; 
+import {Entity, Column, BaseEntity, ObjectIdColumn} from "typeorm"; 
+import {ObjectID} from "mongodb";
 
 @Entity()  
 export class Actions extends BaseEntity {  

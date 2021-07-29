@@ -24,7 +24,8 @@ export const DELETE_ACTION={
     },
     async resolve(parent:any, args:any){
         const id=args.id
-        return Actions.delete(id);
+        Actions.delete(id);
+        return id;
     }
 }
 

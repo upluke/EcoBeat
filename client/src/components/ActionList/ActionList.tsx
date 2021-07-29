@@ -4,8 +4,9 @@ import { useQuery } from '@apollo/client'
 import { Paper } from '@material-ui/core'
 import { List } from '@material-ui/core'
 import { Divider } from '@material-ui/core'
-import { ListItem } from '@material-ui/core'
-import { ListItemText } from '@material-ui/core'
+import Action from '../Action/Action'
+
+ 
 
 const ActionList: React.FC=()=>{
     const {loading,data, error}=useQuery(GET_ALL_ACTIONS)
@@ -16,13 +17,10 @@ const ActionList: React.FC=()=>{
         <Paper>
             <List>
             {data&&
-                data.getAllActions.map((action:any)=>{
+                data.getAllActions.map((action?:any)=>{
                     return (
                         <>
-                        <ListItem key={action.id}>
-                            <ListItemText style={{color:"red"}}>{action.actionName} :</ListItemText>
-                            {action.actionDescription}-{action.ecopoints||"no points was generated"}
-                        </ListItem>
+                        <Action {...action}/>
                         <Divider/>
                         </>
                     )

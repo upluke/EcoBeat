@@ -5,9 +5,6 @@ export class Actions extends BaseEntity {
 
    @ObjectIdColumn() 
    id!: ObjectID; 
-   
-   @Column() 
-   actionName!: string; 
 
    @Column() 
    actionDescription!: string; 

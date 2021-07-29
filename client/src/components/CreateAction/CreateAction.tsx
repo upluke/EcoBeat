@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const CreateAction: React.FC=()=>{
-    const [actionName, setActionName]=useState("")
     const [actionDescription, setaActionDescription]=useState("")
     const [ecopoints, setEcopoints]=useState(0)
 
@@ -41,15 +40,6 @@ const CreateAction: React.FC=()=>{
             <TextField 
                 margin="normal"
                 type="text" 
-                label="Name" 
-                autoFocus
-                onChange={(e)=>{
-                    setActionName(e.target.value)
-                }}
-            />
-            <TextField 
-                margin="normal"
-                type="text" 
                 label="Description" 
                 autoFocus
                 onChange={(e)=>{
@@ -59,7 +49,7 @@ const CreateAction: React.FC=()=>{
            <TextField 
                 margin="normal"
                 type="number" 
-                label="Ecopoints" 
+                label="Price" 
                 autoFocus
                 onChange={(e)=>{
                     setEcopoints(parseInt(e.target.value))
@@ -73,7 +63,7 @@ const CreateAction: React.FC=()=>{
                 startIcon={<SaveIcon />}
                 onClick={()=>{
                     createAction({
-                        variables:{actionName:actionName, actionDescription:actionDescription, ecopoints:ecopoints }
+                        variables:{actionDescription:actionDescription, ecopoints:ecopoints }
                     })
                 }}
             >Create Card</Button>

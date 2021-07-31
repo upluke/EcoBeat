@@ -1,0 +1,75 @@
+import React,{useState} from 'react'
+import {
+    useMutation
+  } from "@apollo/client"; 
+
+import { CREATE_USER } from '../../graphql/mutations';
+import { TextField } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+    paper: {
+      margin: "1rem 1rem ",
+      padding:"0.5rem 1rem",
+      width: "80%",
+      position: "relative",
+      display: "flex",
+      flexDirection: 'column',
+    },
+    button: {
+        margin: theme.spacing(1),
+      },
+  }));
+
+const CreateAction: React.FC=()=>{
+    const [username, setUsername]=useState("")
+    const [email, setEmail]=useState("")
+
+    const [createUser, {loading,error}]=useMutation(CREATE_USER)
+    const classes = useStyles();
+
+    console.log(error)
+    if (loading) return <h1>Loading...</h1>;
+    if (error) return <h1>Something went wrong!</h1>;
+    return(
+        <Paper className={classes.paper}>
+            
+            <TextField 
+                margin="normal"
+                type="text" 
+                label="username" 
+                autoFocus
+                onChange={(e)=>{
+                    setUsername(e.target.value)
+                }}
+            />
+            <TextField 
+                margin="normal"
+                type="text" 
+                label="email" 
+                autoFocus
+                onChange={(e)=>{
+                    setEmail(e.target.value)
+                }}
+            />
+            <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                className={classes.button}
+                startIcon={<SaveIcon />}
+                onClick={()=>{
+                    createUser({
+                        variables:{username:username, email:email}
+                    })
+                }}
+            >Create User</Button>
+
+        </Paper> 
+    )
+}
+
+export default CreateAction

@@ -8,7 +8,20 @@ export const GET_ALL_ACTIONS=gql`
             actionDescription
             ecopoints
         }
-    }
-    
-     
+    } 
 `
+
+export const GET_ALL_USERS=gql`
+
+    query getAllUsers{
+        getAllUsers{
+            id
+            username
+            email
+            ecopoints
+        }
+    } 
+`
+
+
+ 

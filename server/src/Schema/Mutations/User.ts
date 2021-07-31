@@ -11,7 +11,7 @@ export const CREATE_USER={
         ecopoints:{type:GraphQLInt},
     },
     resolve(parent:any, args:any){
-        const {username, email,ecopoints}=args;
+        const {username, email,ecopoints=0}=args;
         Users.insert({username,email,ecopoints})
         return args;
     }

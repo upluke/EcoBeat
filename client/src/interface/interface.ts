@@ -6,3 +6,10 @@ export interface ActionInterface{
     ecopoints:number;
     completed:boolean
 }
+
+export interface UserInterface{
+    id:ObjectId;
+    username:string;
+    email:string;
+    ecopoints:number
+}

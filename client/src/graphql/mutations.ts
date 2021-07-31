@@ -27,3 +27,23 @@ export const DELETE_ACTION=gql`
         }
     }
 `
+
+
+export const CREATE_USER=gql`
+    mutation createUser(
+        $username:String!
+        $email:String!
+        
+    ){
+        createUser(
+            username:$username
+            email:$email
+            
+        ){
+            username
+            email
+            ecopoints
+           
+        }
+    }
+`

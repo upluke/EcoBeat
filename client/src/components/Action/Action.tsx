@@ -10,10 +10,10 @@ import { useMutation } from '@apollo/client';
 const Action: React.FC<ActionInterface>=({id, actionDescription,ecopoints})=>{
     const [deleteUser, {error}]=useMutation(DELETE_ACTION)
     return(
-        <h1>
+        <div style={{backgroundColor:"#969398"}}>
             
             <ListItem >
-                <ListItemText>{actionDescription}-{ecopoints||"no points was generated"}</ListItemText>
+                <ListItemText style={{color:"white"}}>{actionDescription}-{ecopoints||"no points was generated"}</ListItemText>
                 
             </ListItem>
             <IconButton
@@ -22,7 +22,7 @@ const Action: React.FC<ActionInterface>=({id, actionDescription,ecopoints})=>{
             >
               <DeleteForeverIcon />
             </IconButton>
-        </h1> 
+        </div> 
     )
 }
 

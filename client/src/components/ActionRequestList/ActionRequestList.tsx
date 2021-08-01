@@ -14,8 +14,8 @@ const ActionList: React.FC=()=>{
     if (loading) return <h1>Loading...</h1>;
     if (error) return <h1>Something went wrong!</h1>;
     return(
-        <Paper>
-            <List>
+        <Paper >
+            <List style={{backgroundColor:"#113537"}}>
             {data&&
                 data.getAllActions.map((action?:any)=>{
                     return (

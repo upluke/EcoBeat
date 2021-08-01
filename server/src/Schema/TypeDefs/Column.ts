@@ -19,12 +19,12 @@ import {
 //     })
 // })
 
-const OrderedActionsType=new GraphQLObjectType({
-    name:'OrderedActions',
-    fields:()=>({
-        id: { type: GraphQLString  }
-    })
-})
+// const OrderedActionsType=new GraphQLObjectType({
+//     name:'OrderedActions',
+//     fields:()=>({
+//         id: { type: GraphQLString  }
+//     })
+// })
 
 // Column Type
 export const ColumnType=new GraphQLObjectType({
@@ -32,7 +32,7 @@ export const ColumnType=new GraphQLObjectType({
     fields:()=>({
         id:{type:GraphQLID},
         columnName:{type:GraphQLString},
-        orderedActions:{type:new GraphQLList(OrderedActionsType)},
+        orderedActions:{type:new GraphQLList(GraphQLString)},
        
     })
 })

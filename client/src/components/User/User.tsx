@@ -12,7 +12,7 @@ const Action: React.FC<UserInterface>=({username,email, ecopoints})=>{
             <ListItem >
                 <ListItemText>{username} </ListItemText>
                 <ListItemText>{email} </ListItemText>
-                <ListItemText>{ecopoints} </ListItemText>
+                <ListItemText style={{color:"red"}}>{ecopoints} </ListItemText>
             </ListItem>
         </div> 
     )

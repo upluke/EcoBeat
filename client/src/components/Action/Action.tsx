@@ -13,8 +13,9 @@ const Action: React.FC<ActionInterface>=({id, actionDescription,ecopoints})=>{
         <div style={{backgroundColor:"#969398"}}>
             
             <ListItem >
-                <ListItemText style={{color:"white"}}>{actionDescription}-{ecopoints||"no points was generated"}</ListItemText>
-                
+                <ListItemText style={{color:"white"}}>{actionDescription}</ListItemText>
+                <ListItemText style={{color:"blue"}}>{ecopoints||"no points was generated"}</ListItemText>
+            
             </ListItem>
             <IconButton
               aria-label="Delete"

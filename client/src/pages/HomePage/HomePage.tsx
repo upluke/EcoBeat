@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import CreateUser from '../../components/CreateUser';
 import UserList from '../../components/UserList';
+import Columns from '../../components/Columns';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 const HomePage: React.FC=()=>{
     const classes = useStyles();
     return(
+      <>
         <Paper className={classes.root}>
               <div className={classes.list}>
                 <CreateUser/>
@@ -39,9 +41,14 @@ const HomePage: React.FC=()=>{
               <div className={classes.list}>
                 <CreateAction/>
                 <ActionList/>
-             
               </div>
         </Paper> 
+        <Paper className={classes.root}>
+                <div className={classes.list}>
+                  <Columns/>
+                </div>
+          </Paper> 
+      </>
     )
 }
 

@@ -27,7 +27,6 @@ export const GET_ALL_COLUMNS=gql`
 
     query getAllColumns{
         getAllColumns{
-            id
             columnName
             orderedActions
         }

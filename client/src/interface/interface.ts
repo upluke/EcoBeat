@@ -13,3 +13,18 @@ export interface UserInterface{
     email:string;
     ecopoints:number
 }
+
+
+export interface ColumnInterface {
+
+      // id: string;
+      columnName:string;
+      orderedActions: string[];
+
+  }
+
+export interface ItemInterface {
+    id: string;
+    index: number
+  }
+  

@@ -28,7 +28,7 @@ import {
 
 // Column Type
 export const ColumnType=new GraphQLObjectType({
-    name:'column',
+    name:'Column',
     fields:()=>({
         id:{type:GraphQLID},
         columnName:{type:GraphQLString},

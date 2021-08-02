@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import CreateUser from '../../components/CreateUser';
 import UserList from '../../components/UserList';
-import Columns from '../../components/Columns';
+import ColumnList from '../../components/Columns';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 2,
       padding: 0,
       margin: 0,
-      height: "100vh",//100vh
+      height: "40%",//100vh
       backgroundColor: "#113537",
    
     },
@@ -24,9 +24,13 @@ const useStyles = makeStyles((theme) => ({
     list: {
       width: '50%',
       margin: '1rem',
-  
+    },
+    dndPaper:{
+      width: "100%",
+      backgroundColor: "red",
+   
+    },
  
-  }
   }));
 
 const HomePage: React.FC=()=>{
@@ -42,12 +46,13 @@ const HomePage: React.FC=()=>{
                 <CreateAction/>
                 <ActionList/>
               </div>
+
         </Paper> 
-        <Paper className={classes.root}>
-                <div className={classes.list}>
-                  <Columns/>
-                </div>
-          </Paper> 
+        <Paper className={classes.dndPaper}>
+               <div >
+                  <ColumnList/>
+              </div>
+        </Paper> 
       </>
     )
 }

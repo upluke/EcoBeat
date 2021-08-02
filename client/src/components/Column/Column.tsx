@@ -14,11 +14,7 @@ const Column: React.FC<ColumnInterface> = ({columnName, orderedActions}) => {
     return (
       <Droppable droppableId={columnName}>
         {(provided) => (
-          <div          
-            style={{
-            display: 'flex',
-            flexDirection: 'column',
-             }}>
+          <div>
             <h2>{columnName}</h2>
             <div   style={{
               display: 'flex',

@@ -8,6 +8,8 @@ import {
   gql
 } from "@apollo/client"; //server component handling graphQL requests
 
+import HomePage from './pages/HomePage';
+
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
   cache: new InMemoryCache()
@@ -33,9 +35,9 @@ const client = new ApolloClient({
 // interface TodoTypeData {
 //   todoType: TodoType[];
 // }
-  
 
-const TODOS=gql`
+
+const TODOS = gql`
     query GetTodo{
       todo{
         title
@@ -44,15 +46,15 @@ const TODOS=gql`
     }
 `
 
-function Display(){
-  const{loading, error, data}=useQuery (TODOS)
-  if(loading) return <p>Laoding....</p>
-  if(error) return <p>Error occurs</p>
-    
-  if(loading || !data) return <div>loading...</div>
-  return(
+function Display() {
+  const { loading, error, data } = useQuery(TODOS)
+  if (loading) return <p>Laoding....</p>
+  if (error) return <p>Error occurs</p>
+
+  if (loading || !data) return <div>loading...</div>
+  return (
     <div>
-      <pre>{JSON.stringify(data,null,2)}</pre>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   )
 
@@ -62,8 +64,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-          <h1>Lou Team</h1>
-          <Display />
+        <HomePage />
+        {/* <h1>Lou Team</h1> */}
+        <Display />
       </div>
     </ApolloProvider>
   );

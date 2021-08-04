@@ -114,7 +114,7 @@ const ColumnList: React.FC=()=>{
         const dd:any=destination.droppableId
         const startColumnData= renderData[sd];
         const endColumnData= renderData[dd];
-        console.log(startColumnData,"test start and ed",endColumnData)
+       
         // If start is the same as end, we're in the same column
         if (startColumnData === endColumnData) {
          
@@ -123,7 +123,7 @@ const ColumnList: React.FC=()=>{
           const newList = startColumnData.orderedActions.filter(
             (_: any, idx: number) => idx !== source.index
           )
-          console.log("new list",newList)
+        
           // Then insert the item at the right location
           newList.splice(destination.index, 0, startColumnData.orderedActions[source.index])
     
@@ -150,31 +150,33 @@ const ColumnList: React.FC=()=>{
             columnName: startColumnData.columnName,
             orderedActions: newStartList
           }
-          console.log("newStartCol: ",newStartCol,"%%%%%%%%%%%%%%%%%%%%" )
+        //   console.log("newStartCol: ",newStartCol,"%%%%%%%%%%%%%%%%%%%%" )
           // Make a new end list array
-          const newEndList:any[] = endColumnData.orderedActions
-          console.log(newEndList," end.list: ")
+          const newEndList:any = Object.values(endColumnData.orderedActions)
+           
       
         //   console.log(endColumnData,"endColumndata----newsEndlist",newEndList )
           // Insert the item into the end list
-          console.log(destination.index,"()()()()()", startColumnData.orderedActions[source.index])
-          newEndList.splice(destination.index, 0, startColumnData.orderedActions[source.index])
-     
-          console.log("new end list: ",newEndList)
+          console.log("newEndList: ",typeof(newEndList), "destination.index: ",destination.index,"startColumnData.orderedActions[source.index]:", startColumnData.orderedActions[source.index])
+        
+
+        newEndList.splice(destination.index, 0, startColumnData.orderedActions[source.index])
+    
+         
           
-          // Create a new end column
+        //   Create a new end column
           const newEndCol = {
             columnName: endColumnData.columnName,
             orderedActions: newEndList
           }
           console.log("newEndCol: ",newEndCol )
     
-          //Update the state
-        //   setRenderData((state:any)=>({
-        //     ...state,
-        //     [newStartCol.columnName]: newStartCol,
-        //     [newEndCol.columnName]: newEndCol
-        //   }))
+        //   Update the state
+          setRenderData((state:any)=>({
+            ...state,
+            [newStartCol.columnName]: newStartCol,
+            [newEndCol.columnName]: newEndCol
+          }))
            
         }
       }

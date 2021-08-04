@@ -23,5 +23,15 @@ export const GET_ALL_USERS=gql`
     } 
 `
 
+export const GET_ALL_COLUMNS=gql`
+
+    query getAllColumns{
+        getAllColumns{
+            columnName
+            orderedActions
+        }
+    } 
+`
+
 
  

@@ -1,18 +1,23 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
-import { ItemInterface } from '../../interface/interface';
+ 
 
+interface ItemInterface {
+  text: string;
+  index: number
+}
 
-const ColumnItem: React.FC<ItemInterface> = ({ id,index  }) => {
+const ColumnItem: React.FC<ItemInterface> = ({ text,index  }) => {
+  console.log(text,"inside item", index)
     return (
-      <Draggable draggableId={id} index={index}>
-      {provided => (
+      <Draggable draggableId={text} index={index}>
+      {(provided) => (
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          {id}
+          {text}
         </div>
       )}
     </Draggable>

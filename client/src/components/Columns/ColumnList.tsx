@@ -24,30 +24,66 @@ const useStyles = makeStyles((theme) => ({
 
 
 // const onDragEnd = ( ) =>  null
-export interface ColumnInterface {
+interface ColumnInterface {
 
     // id: string;
     columnName:string;
     orderedActions: string[];
 
 }
- 
+
+
 
 const ColumnList: React.FC=()=>{
+    // const initialColumns:any = {
+    //     request: {
+    //         columnName: "request",
+    //         orderedActions: ["item 1", "item 2", "item 3"]
+    //     },
+    //     accepted: {
+    //         columnName: "accepted",
+    //         orderedActions: []
+    //     },
+    //     finished: {
+    //         columnName: "finished",
+    //         orderedActions: []
+    //     }
+    //   };
+
+    //   const [renderData, setRenderData] = React.useState<any>(initialColumns)
     const {loading,data, error}=useQuery(GET_ALL_COLUMNS)
-    const [renderData, setRenderData] = React.useState([])
-    console.log("data^^^^^^^^^^^",data)
+    const [renderData, setRenderData] = React.useState<any[]>([])
+   
+    
+    // const categories = ["request", "accepted", "finished"];
+
     React.useEffect(()=>{
         if(!loading&&data){
-          setRenderData(data.getAllColumns)
+          let groupedData = getItemsByCategories(data.getAllColumns, "columnName");
+          setRenderData(groupedData)
         }
       },[loading,data])
-    console.log("renderData###############",data,renderData)
+    
+
+    const getItemsByCategories = (objectArray:any, property:any) => {
+        return objectArray.reduce((acc:any, obj:any) => {
+          const key = obj[property];
+          if (!acc[key]) {
+            acc[key] = {};
+          }
+          acc[key] = obj;
+          return acc;
+        }, {});
+      };
+    
+    
+ 
+    console.log("*******************randered",renderData)
 
     const onDragEnd = ({ source, destination }: DropResult) => {
         // Make sure we have a valid destination
         if (destination === undefined || destination === null) {return null}
-    
+   
         // Make sure we're actually moving the item
         if (
           source.droppableId === destination.droppableId &&
@@ -56,8 +92,7 @@ const ColumnList: React.FC=()=>{
         {return null}
     
         // Set start and end variables
-        // const start =  source.droppableId
-        // const end =  destination.droppableId
+   
 
         // const startColumnData  = renderData.find((col:any):any=>{
         //     return col.columnName === source.droppableId
@@ -65,57 +100,68 @@ const ColumnList: React.FC=()=>{
         // const endColumnData = renderData.find((col:any):any=>{
         //        return col.columnName === destination.droppableId
         //       })||{orderedActions:[]}
+        
 
-        const startColumnData:any = renderData.find((col:any)=>{
-            return col.columnName === source.droppableId
-           }) 
-        const endColumnData:any = renderData.find((col:any)=>{
-            return col.columnName === destination.droppableId
-           }) 
-        console.log("&&",startColumnData,endColumnData)
+        // const startColumnData:any = renderData.find((col:any)=>{
+        //     return col.columnName === source.droppableId
+        //    }) 
+        // const endColumnData:any = renderData.find((col:any)=>{
+        //     return col.columnName === destination.droppableId
+        //    }) 
+        //    console.log(startColumnData,"endColumndata--out-newsEndlist",endColumnData )
+       
+        const sd:any=source.droppableId
+        const dd:any=destination.droppableId
+        const startColumnData= renderData[sd];
+        const endColumnData= renderData[dd];
+        console.log(startColumnData,"test start and ed",endColumnData)
         // If start is the same as end, we're in the same column
         if (startColumnData === endColumnData) {
-            return null
-          // Move the item within the list
-          // Start by making a new list without the dragged item
-        //   const newList = start.list.filter(
-        //     (_: any, idx: number) => idx !== source.index
-        //   )
-    
-        //   // Then insert the item at the right location
-        //   newList.splice(destination.index, 0, start.list[source.index])
-    
-        //   // Then create a new copy of the column object
-        //   const newCol = {
-        //     id: start.id,
-        //     list: newList
-        //   }
-    
-        //   // Update the state
-        // //   setColumns(state => ({ ...state, [newCol.id]: newCol }))
-        //   return null
-        } else {
-          // If start is different from end, we need to update multiple columns
-          // Filter the start list like before
-          const newStartList = startColumnData.orderedActions.filter(
+         
+        //   Move the item within the list
+        //   Start by making a new list without the dragged item
+          const newList = startColumnData.orderedActions.filter(
             (_: any, idx: number) => idx !== source.index
           )
-          console.log("newstartlist: ",newStartList )
+          console.log("new list",newList)
+          // Then insert the item at the right location
+          newList.splice(destination.index, 0, startColumnData.orderedActions[source.index])
+    
+          // Then create a new copy of the column object
+          const newCol = {
+            columnName: startColumnData.columnName,
+            orderedActions: newList
+          }
+    
+          // Update the state
+          setRenderData(state => ({ ...state, [newCol.columnName]: newCol }))
+          return null
+        } else {
+           
+          // If start is different from end, we need to update multiple columns
+          // Filter the start list like before
+          const newStartList:any = startColumnData.orderedActions.filter(
+            (_: any, idx: number) => idx !== source.index
+          )
+
+        
           // Create a new start column
           const newStartCol = {
-         
             columnName: startColumnData.columnName,
             orderedActions: newStartList
           }
-          console.log("newStartCol: ",newStartCol )
+          console.log("newStartCol: ",newStartCol,"%%%%%%%%%%%%%%%%%%%%" )
           // Make a new end list array
-          const newEndList = endColumnData.orderedActions
-
-          console.log("newsEndlist: ",newEndList )
+          const newEndList:any[] = endColumnData.orderedActions
+          console.log(newEndList," end.list: ")
+      
+        //   console.log(endColumnData,"endColumndata----newsEndlist",newEndList )
           // Insert the item into the end list
-          console.log("source index: ",source.index)
+          console.log(destination.index,"()()()()()", startColumnData.orderedActions[source.index])
           newEndList.splice(destination.index, 0, startColumnData.orderedActions[source.index])
-    
+     
+          console.log("new end list: ",newEndList)
+          
           // Create a new end column
           const newEndCol = {
             columnName: endColumnData.columnName,
@@ -124,7 +170,7 @@ const ColumnList: React.FC=()=>{
           console.log("newEndCol: ",newEndCol )
     
           //Update the state
-        //   setRenderData(state =>({
+        //   setRenderData((state:any)=>({
         //     ...state,
         //     [newStartCol.columnName]: newStartCol,
         //     [newEndCol.columnName]: newEndCol
@@ -135,20 +181,21 @@ const ColumnList: React.FC=()=>{
     
 
     const classes = useStyles();
-    if (loading) return <h1>Loading...</h1>;
-    if (error) return <h1>Something went wrong!</h1>;
+    // if (loading) return <h1>Loading...</h1>;
+    // if (error) return <h1>Something went wrong!</h1>;
     
     return(
         <DragDropContext onDragEnd={onDragEnd}>
             <Paper  >
                 <List className={classes.root} >
-                {data&&
-                    data.getAllColumns.map((col:any)=>{
+                {
+                    Object.values(renderData).map((col:any)=>{
                         return (
-                            <>
-                            <Column {...col} />
+                       
+                              
+                            <Column key={col.columnName} col={col} />
                         
-                            </>
+                     
                         )
                     })
                     }

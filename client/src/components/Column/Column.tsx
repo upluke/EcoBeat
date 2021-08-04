@@ -3,28 +3,26 @@ import { Droppable } from "react-beautiful-dnd";
 import ColumnItem from "../ColumnItem";
 
 interface ColumnInterface {
- 
+        col:{
         columnName:string;
         orderedActions: string[];
-   
+      }
   }
 
-const Column: React.FC<ColumnInterface> = ({columnName, orderedActions}) => {
-    console.log(columnName,"----",orderedActions)
+const Column: React.FC<ColumnInterface> = ({col:{orderedActions,columnName }}) => {
+    console.log(orderedActions,"list-id",columnName)
     return (
       <Droppable droppableId={columnName}>
         {(provided) => (
           <div>
             <h2>{columnName}</h2>
-            <div   style={{
-              display: 'flex',
-              flexDirection: 'column',
-              minHeight: '120px'
-            }}
+            <div    
              {...provided.droppableProps} ref={provided.innerRef}>
-              {orderedActions.map((orderedAction, index) => (
- 
-                <ColumnItem id={orderedAction} index={index} />
+             
+              {orderedActions&&orderedActions.map((orderedAction, index) => (
+    
+                <ColumnItem key={orderedAction} text={orderedAction} index={index} />
+             
               ))}
               {provided.placeholder}
             </div>

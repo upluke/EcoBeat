@@ -24,7 +24,7 @@ export interface ColumnInterface {
   }
 
 export interface ItemInterface {
-    id: string;
+    text: string;
     index: number
   }
   

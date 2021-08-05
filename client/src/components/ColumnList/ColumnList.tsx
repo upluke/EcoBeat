@@ -3,7 +3,6 @@ import { GET_ALL_COLUMNS } from '../../graphql/queries'
 import { useQuery } from '@apollo/client'
 import { Paper } from '@material-ui/core'
 import { List } from '@material-ui/core'
-import { Divider } from '@material-ui/core'
 import Column from '../Column/Column'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,38 +22,19 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-interface ColumnInterface {
+// interface ColumnInterface {
+//     columnName:string;
+//     orderedActions: string[];
 
-    // id: string;
-    columnName:string;
-    orderedActions: string[];
-
-}
+// }
 
 
 
 const ColumnList: React.FC=()=>{
-    // const initialColumns:any = {
-    //     request: {
-    //         columnName: "request",
-    //         orderedActions: ["item 1", "item 2", "item 3"]
-    //     },
-    //     accepted: {
-    //         columnName: "accepted",
-    //         orderedActions: []
-    //     },
-    //     finished: {
-    //         columnName: "finished",
-    //         orderedActions: []
-    //     }
-    //   };
-
-    //   const [renderData, setRenderData] = React.useState<any>(initialColumns)
+ 
     const {loading,data, error}=useQuery(GET_ALL_COLUMNS)
     const [renderData, setRenderData] = React.useState<any[]>([])
    
-    
-    // const categories = ["request", "accepted", "finished"];
 
     React.useEffect(()=>{
         if(!loading&&data){
@@ -76,8 +56,6 @@ const ColumnList: React.FC=()=>{
       };
     
     
- 
-    console.log("*******************randered",renderData)
 
     const onDragEnd = ({ source, destination }: DropResult) => {
         // Make sure we have a valid destination
@@ -89,25 +67,7 @@ const ColumnList: React.FC=()=>{
           destination.index === source.index
         )
         {return null}
-    
-        // Set start and end variables
-   
-
-        // const startColumnData  = renderData.find((col:any):any=>{
-        //     return col.columnName === source.droppableId
-        //    })||{orderedActions:[]}
-        // const endColumnData = renderData.find((col:any):any=>{
-        //        return col.columnName === destination.droppableId
-        //       })||{orderedActions:[]}
-        
-
-        // const startColumnData:any = renderData.find((col:any)=>{
-        //     return col.columnName === source.droppableId
-        //    }) 
-        // const endColumnData:any = renderData.find((col:any)=>{
-        //     return col.columnName === destination.droppableId
-        //    }) 
-        //    console.log(startColumnData,"endColumndata--out-newsEndlist",endColumnData )
+     
        
         const sd:any=source.droppableId
         const dd:any=destination.droppableId
@@ -137,8 +97,7 @@ const ColumnList: React.FC=()=>{
           return null
         } else {
            
-          // If start is different from end, we need to update multiple columns
-          // Filter the start list like before
+          // If start is different from end, we need to update multiple columns and ilter the start list 
           const newStartList:any = startColumnData.orderedActions.filter(
             (_: any, idx: number) => idx !== source.index
           )
@@ -149,15 +108,10 @@ const ColumnList: React.FC=()=>{
             columnName: startColumnData.columnName,
             orderedActions: newStartList
           }
-        //   console.log("newStartCol: ",newStartCol,"%%%%%%%%%%%%%%%%%%%%" )
-          // Make a new end list array
+       
           const newEndList:any = Object.values(endColumnData.orderedActions)
            
-      
-        //   console.log(endColumnData,"endColumndata----newsEndlist",newEndList )
           // Insert the item into the end list
-          console.log("newEndList: ",typeof(newEndList), "destination.index: ",destination.index,"startColumnData.orderedActions[source.index]:", startColumnData.orderedActions[source.index])
-        
 
         newEndList.splice(destination.index, 0, startColumnData.orderedActions[source.index])
     

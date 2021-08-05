@@ -1,18 +1,20 @@
-import {Entity, Column, BaseEntity, ObjectIdColumn} from "typeorm"; 
+import {Entity, Column, BaseEntity, ObjectIdColumn,ObjectID} from "typeorm"; 
 
 @Entity() //entity decorator
 export class Users extends BaseEntity {  
 
    @ObjectIdColumn() 
-   id!: string; 
+   id!: ObjectID; 
    
    @Column() 
    username!: string; 
 
    @Column() 
-   ecopoints!: number; 
+   email!: string; 
 
    @Column() 
-   email!: string; 
+   ecopoints!: number; 
+
+
 }
  

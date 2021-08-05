@@ -1,6 +1,7 @@
 import { GraphQLList,GraphQLString } from "graphql";
 import { UserType } from "../TypeDefs/User";
 import { Users } from "../../Entities/Users";
+ 
 
 // dummy data:
 // const users=[
@@ -29,3 +30,5 @@ export const GET_ALL_USERS={
         return Users.find();
     }
 }
+
+ 

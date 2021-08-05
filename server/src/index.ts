@@ -4,8 +4,7 @@ import cors from 'cors'; //allow cross-origin
 import { createConnection } from 'typeorm'; // create a connection between a database and application
 // const schema = require('../schema');
 import {schema} from './Schema'
-import { Users } from './Entities/Users';
-
+// import { Users } from './Entities/Users';
 
 
 const main =async()=>{

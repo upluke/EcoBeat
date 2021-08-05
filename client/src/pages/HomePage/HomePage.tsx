@@ -1,60 +1,49 @@
 import React from 'react'
-import CreateAction from '../../components/CreateAction'
-import ActionList from '../../components/ActionRequestList'
-import { Paper } from '@material-ui/core';
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import CreateUser from '../../components/CreateUser';
-import UserList from '../../components/UserList';
-import ColumnList from '../../components/Columns';
+import NavBar from '../../components/NavBar';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import ActionList from '../../components/ActionList';
+import ActionCard from '../../components/ActionCard';
+import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
     root: {
-      display: 'flex',
-      flexGrow: 2,
-      padding: 0,
-      margin: 0,
-      height: "40%",//100vh
-      backgroundColor: "#113537",
-   
+      flexGrow: 1,
     },
-    grid: {
-      marginTop: "1rem"
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      //color: theme.palette.text.secondary,
+      backgroundColor: 'rgba(164,91,91,.53)'
     },
-    list: {
-      width: '50%',
-      margin: '1rem',
-    },
-    dndPaper:{
-      width: "100%",
-      backgroundColor: "red",
-   
-    },
- 
-  }));
+  }),
+);
 
-const HomePage: React.FC=()=>{
-    const classes = useStyles();
-    return(
-      <>
-        <Paper className={classes.root}>
-              <div className={classes.list}>
-                <CreateUser/>
-                <UserList/>
-              </div>
-              <div className={classes.list}>
-                <CreateAction/>
-                <ActionList/>
-              </div>
 
-        </Paper> 
-        <Paper className={classes.dndPaper}>
-               <div >
-                  <ColumnList/>
-              </div>
-        </Paper> 
-      </>
-    )
+const RequestCards = [<ActionCard actionDescription="Hello" ecopoints={400} />, <ActionCard actionDescription="wassup" ecopoints={450} />]
+const AcceptedCards = [<ActionCard actionDescription="S" ecopoints={0} />]
+const RewardCards = [<ActionCard actionDescription="Hello" ecopoints={400} />, <ActionCard actionDescription="wassup" ecopoints={450} />]
+
+const HomePage: React.FC = () => {
+  const classes = useStyles();
+  return (
+
+
+    <div className={classes.root}>
+      <NavBar loggedIn={true} />
+      {/* This loggedIn property should use a function */}
+      {/* That way, when it is false, the User Info (username, coins, etc) will not show. */}
+
+      <Grid container spacing={3} justify="center">
+
+        <ActionList helpMessage="hello1" cards={RequestCards} title='Requests' />
+        <ActionList helpMessage="hello2" cards={AcceptedCards} title='Accepted' />
+        <ActionList helpMessage="hello3" cards={RewardCards} title='Rewards' />
+        {/* These helpMessages should be updated, perhaps taken from some file */}
+      </Grid>
+
+    </div >
+  )
 }
 
 export default HomePage

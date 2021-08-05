@@ -7,7 +7,7 @@ import {
 } from "@apollo/client"; //server component handling graphQL requests
 
 import HomePage from './pages/HomePage';
-
+import Testing from './pages/Testing';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql', // link to the graphql server
@@ -19,8 +19,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-          <h1>Lou Team</h1>
-          <HomePage />
+        {/* <h1>Lou Team</h1> */}
+        <HomePage />
+        <Testing />
       </div>
     </ApolloProvider>
   );

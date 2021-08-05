@@ -1,23 +1,46 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
- 
+import { GET_ALL_ACTIONS } from '../../graphql/queries'
+import { useQuery } from '@apollo/client'
+import { makeStyles } from "@material-ui/core/styles";
+
 
 interface ItemInterface {
   text: string;
   index: number
 }
 
+const useStyles = makeStyles((theme) => ({
+  item: {
+    backgroundColor: "#eee",
+    borderRadius: 4,
+    padding: "4px 8px",
+    transition: "background-color .8s ease-out",
+    marginTop: 8,
+    "&:hover": {
+      backgroundColor: "#fff",
+      transition: "background-color .1s ease-in"
+    }
+  }
+   
+}));
+
+
 const ColumnItem: React.FC<ItemInterface> = ({ text,index  }) => {
-  console.log(text,"inside item", index)
+    const {loading,data, error}=useQuery(GET_ALL_ACTIONS)
+    const fetchedText=data.getAllActions.find((action:any)=>text===action["id"])
+    const classes = useStyles();
     return (
       <Draggable draggableId={text} index={index}>
       {(provided) => (
         <div
+          className={classes.item}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          {text}
+          {fetchedText["actionDescription"]} -------
+          {fetchedText["ecopoints"]}
         </div>
       )}
     </Draggable>

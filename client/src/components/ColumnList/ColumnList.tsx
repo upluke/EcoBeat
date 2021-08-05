@@ -13,17 +13,16 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr',
-        margin: '24px auto',
-        width: '80%',
-        height: '68rem',
-        gap: '8px',
-        backgroundColor: "pink",
+        padding:'3rem 18rem',
+        gap: '8rem',
+        height:'100hv',
+        backgroundColor: "#DAFEE2",
     },
   }));
 
 
 
-// const onDragEnd = ( ) =>  null
+
 interface ColumnInterface {
 
     // id: string;
@@ -193,11 +192,7 @@ const ColumnList: React.FC=()=>{
                 {
                     Object.values(renderData).map((col:any)=>{
                         return (
-                       
-                              
                             <Column key={col.columnName} col={col} />
-                        
-                     
                         )
                     })
                     }

@@ -5,7 +5,7 @@ import { Paper } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import CreateUser from '../../components/CreateUser';
 import UserList from '../../components/UserList';
-import ColumnList from '../../components/Columns';
+import ColumnList from '../../components/ColumnList';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const Testing: React.FC = () => {
+const TempPage: React.FC = () => {
   const classes = useStyles();
   return (
     <>
@@ -56,4 +56,4 @@ const Testing: React.FC = () => {
   )
 }
 
-export default Testing
+export default TempPage

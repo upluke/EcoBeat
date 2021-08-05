@@ -1,10 +1,8 @@
 import React from 'react'
-import CreateAction from '../../components/CreateAction'
-import ActionList from '../../components/ActionRequestList'
+
 import { Paper } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
-import CreateUser from '../../components/CreateUser';
-import UserList from '../../components/UserList';
+
 import ColumnList from '../../components/ColumnList';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,28 +30,15 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const TempPage: React.FC = () => {
+const DNDPage: React.FC = () => {
   const classes = useStyles();
   return (
-    <>
-      <Paper className={classes.root}>
-        <div className={classes.list}>
-          <CreateUser />
-          <UserList />
-        </div>
-        <div className={classes.list}>
-          <CreateAction />
-          <ActionList />
-        </div>
-
-      </Paper>
       <Paper className={classes.dndPaper}>
         <div >
           <ColumnList />
         </div>
       </Paper>
-    </>
   )
 }
 
-export default TempPage
+export default DNDPage

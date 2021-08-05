@@ -28,8 +28,27 @@ const useStyles = makeStyles((theme) => ({
 
 const ColumnItem: React.FC<ItemInterface> = ({ text,index  }) => {
     const {loading,data, error}=useQuery(GET_ALL_ACTIONS)
-    const fetchedText=data.getAllActions.find((action:any)=>text===action["id"])
     const classes = useStyles();
+    if (typeof(data) == 'undefined') {
+      return (
+        <Draggable draggableId={text} index={index}>
+        {(provided) => (
+          <div
+            className={classes.item}
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            {text}
+          </div>
+        )}
+      </Draggable>
+      ); 
+    }else{
+    const fetchedText=data.getAllActions&&data.getAllActions.find((action:any)=>text===action["id"])
+   
+    if (loading) return <h1>Loading...</h1>;
+    if (error) return <h1>Something went wrong!</h1>;
     return (
       <Draggable draggableId={text} index={index}>
       {(provided) => (
@@ -45,6 +64,7 @@ const ColumnItem: React.FC<ItemInterface> = ({ text,index  }) => {
       )}
     </Draggable>
     );
+  }
   };
   
   export default ColumnItem;

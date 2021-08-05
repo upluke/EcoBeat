@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export interface ActionListInterface {
+interface ActionListInterface {
     helpMessage: string;
     cards: React.ReactElement<typeof ActionCard>[];
     title: string;

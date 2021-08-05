@@ -3,7 +3,8 @@ import {
     GraphQLString,
     GraphQLID,
     GraphQLInt,
-    GraphQLBoolean
+    GraphQLBoolean,
+    GraphQLList
 }from 'graphql'; //graphQL types
 
 
@@ -18,13 +19,24 @@ import {
 //     })
 // })
 
-// Action Type
-export const ActionType=new GraphQLObjectType({
-    name:'Action',
+// const OrderedActionsType=new GraphQLObjectType({
+//     name:'OrderedActions',
+//     fields:()=>({
+//         id: { type: GraphQLString  }
+//     })
+// })
+
+// Column Type
+export const ColumnType=new GraphQLObjectType({
+    name:'Column',
     fields:()=>({
         id:{type:GraphQLID},
-        actionDescription:{type:GraphQLString},
-        ecopoints:{type:GraphQLInt},
-        completed:{type:GraphQLBoolean}
+        columnName:{type:GraphQLString},
+        orderedActions:{type:new GraphQLList(GraphQLString)},
+       
     })
 })
+
+ 
+
+ 

@@ -3,7 +3,7 @@ import {
     useMutation
   } from "@apollo/client"; 
 
-import { CREATE_ACTION } from '../../graphql/mutations';
+import { CREATE_USER } from '../../graphql/mutations';
 import { TextField } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const CreateAction: React.FC=()=>{
-    const [actionDescription, setaActionDescription]=useState("")
-    const [ecopoints, setEcopoints]=useState(0)
+    const [username, setUsername]=useState("")
+    const [email, setEmail]=useState("")
 
-    const [createAction, {loading,error}]=useMutation(CREATE_ACTION)
+    const [createUser, {loading,error}]=useMutation(CREATE_USER)
     const classes = useStyles();
 
     console.log(error)
@@ -38,33 +38,33 @@ const CreateAction: React.FC=()=>{
             <TextField 
                 margin="normal"
                 type="text" 
-                label="Description" 
+                label="username" 
                 autoFocus
                 onChange={(e)=>{
-                    setaActionDescription(e.target.value)
+                    setUsername(e.target.value)
                 }}
             />
-           <TextField 
+            <TextField 
                 margin="normal"
-                type="number" 
-                label="Price" 
+                type="text" 
+                label="email" 
                 autoFocus
                 onChange={(e)=>{
-                    setEcopoints(parseInt(e.target.value))
+                    setEmail(e.target.value)
                 }}
             />
             <Button
                 variant="contained"
-                color="primary"
+                color="secondary"
                 size="large"
                 className={classes.button}
                 startIcon={<SaveIcon />}
                 onClick={()=>{
-                    createAction({
-                        variables:{actionDescription:actionDescription, ecopoints:ecopoints }
+                    createUser({
+                        variables:{username:username, email:email}
                     })
                 }}
-            >Create Card</Button>
+            >Create User</Button>
 
         </Paper> 
     )

@@ -2,19 +2,16 @@ import {Entity, Column, BaseEntity, ObjectIdColumn} from "typeorm";
 import {ObjectID} from "mongodb";
 
 @Entity()  
-export class Actions extends BaseEntity {  
+export class Columns extends BaseEntity {  
 
    @ObjectIdColumn() 
    id!: ObjectID; 
 
    @Column() 
-   actionDescription!: string; 
+   columnName!: string; 
 
-   @Column() 
-   ecopoints!: number; 
-
-   @Column() 
-   completed!: boolean; 
+   @Column("simple-array") 
+   orderedActions!: string[]; 
 
 }
  

@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
         gridTemplateColumns: '1fr 1fr 1fr',
         padding:'3rem 18rem',
         gap: '8rem',
-        height:'100hv',
-        backgroundColor: "#DAFEE2",
+        height:'50rem',
+        backgroundColor: "#113537",
     },
   }));
 

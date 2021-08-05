@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     
   },
   list:{
-    backgroundColor: "#ddd",
+    backgroundColor: "#DAFEE2",
     borderRadius: 8,
     padding: 16,
     display: "flex",
@@ -30,9 +30,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 8
   },
   title:{
-    margin: 0,
-    padding: "0 16px",
-    textAlign:"center"
+    padding: "0 1rem",
+    margin:"2rem 0",
+    textAlign:"center",
+    color:"white",
+    
   }
 }));
 

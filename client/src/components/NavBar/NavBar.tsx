@@ -4,13 +4,14 @@ import { createStyles, makeStyles, Theme, createTheme, ThemeProvider } from '@ma
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Box from '@material-ui/core/Box';
 import Coin from '../CoinIcon/Coin';
+import { Link } from "react-router-dom"; 
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -52,19 +53,19 @@ const theme = createTheme({
 });
 
 
-function getNavItem(props: { name: string; classes: { [index: string]: string }; href: string }): JSX.Element {
-    const { name, href, classes } = props;
-    const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
+// function getNavItem(props: { name: string; classes: { [index: string]: string }; href: string }): JSX.Element {
+//     const { name, href, classes } = props;
+//     const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
-    return (
+//     return (
 
-        <Typography variant="h4" className={classes.nav_item}>
-            <Link href={href} onClick={preventDefault} color="inherit">
-                {name}
-            </Link>
-        </Typography>
-    )
-}
+//         <Typography variant="h4" className={classes.nav_item}>
+//             <Link href={href} onClick={preventDefault} color="inherit">
+//                 {name}
+//             </Link>
+//         </Typography>
+//     )
+// }
 
 function getInfoGroupIfLoggedIn(props: { classes: { [index: string]: string }; loggedIn: boolean }) {
     const { classes, loggedIn } = props;
@@ -109,9 +110,18 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn }) => {
 
                         <Box display='flex' flexGrow={1}>
 
-                            {getNavItem({ name: 'About', classes: classes, href: '#about' })}
-                            {getNavItem({ name: 'Settings', classes: classes, href: '#Settings' })}
-
+                            {/* {getNavItem({ name: 'About', classes: classes, href: '#about' })}
+                            {getNavItem({ name: 'DND Playground', classes: classes, href: '#Drag and Drop' })}
+                            {getNavItem({ name: 'Settings', classes: classes, href: '#Settings' })} */}
+                            <Typography variant="h4" className={classes.nav_item}>
+                                 <Link to="/createpage"> Action Creator</Link>
+                            </Typography>
+                            <Typography variant="h4" className={classes.nav_item}>
+                                 <Link to="/ndnpage"> DND Playground</Link>
+                            </Typography>
+                            <Typography variant="h4" className={classes.nav_item}>
+                                 <Link to="/about"> About</Link>
+                            </Typography>
                         </Box>
 
                         {getInfoGroupIfLoggedIn({ classes: classes, loggedIn: loggedIn })}

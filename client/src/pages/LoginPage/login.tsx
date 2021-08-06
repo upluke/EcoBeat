@@ -3,7 +3,9 @@ import Box from '@material-ui/core/Box';
 import makeStyles from '@material-ui/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import NavBar from './navbar';
+import NavBar from '../../components/NavBar';
+import HomePage from '../HomePage';
+import { Email } from '@material-ui/icons';
 
 
 const useSty = makeStyles({
@@ -24,16 +26,11 @@ const useSty = makeStyles({
 
 });
 
-/*class LoginComponent extends React.Component {
-    constructor() {
-        this.state = {
-            Username: ""
-        }
-    }*/
-
-const LoginPage: React.FC = () => {
+const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>}> = ({onClick}) => {
     const classes = useSty();
-    const [Username, Email]= useState('');
+    const [Username, setUsername] = useState<string>('');
+    const [Email, setEmail] = useState<string>('');
+
     return (
         <Box
             bgcolor="#113537"
@@ -64,7 +61,9 @@ const LoginPage: React.FC = () => {
                             padding: '15 30px',
                         }
                     }}
-                    onInput={()=>this.setState({Username: this.value})}
+                    type="text"
+                    value={Username}
+                    onChange = {(ev: React.ChangeEvent<HTMLInputElement>): void => setUsername(ev.target.value)}
                 ></TextField>
             </div>
             <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%'}}>
@@ -78,18 +77,22 @@ const LoginPage: React.FC = () => {
                             padding: '15 30px',
                         }
                     }} 
+                    type="text"
+                    value={Email}
+                    onChange = {(ev: React.ChangeEvent<HTMLInputElement>): void => setEmail(ev.target.value)}
+
                 ></TextField>
             </div>
             <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '35%', marginRight: '40%', marginTop: '2%'}}>
                 <Button 
                     size = 'medium'
                     variant = 'contained'
+                    onClick= {HomePage}
                     style = {{
                         backgroundColor: '#2CF9AC',
                         padding: "10px 20px",
                         color: 'black'
                     }}
-                    onClick= "location.href='/home'"
                 >Login</Button>
             </div>
         </Box> 

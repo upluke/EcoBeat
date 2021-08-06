@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import NavBar from './navbar';
 
-
+// functions need fixing... button and textfield
 const useSty = makeStyles({
     flexColumn: {
         display: 'flex',
@@ -24,12 +24,12 @@ const useSty = makeStyles({
 
 });
 
-class LoginComponent extends React.Component {
+/*class LoginComponent extends React.Component {
     constructor() {
         this.state = {
             Username: ""
         }
-    }
+    }*/
 
 export default function Loginpage() {
     const { flexColumn, title, cardField } = useSty();
@@ -40,7 +40,7 @@ export default function Loginpage() {
             className={flexColumn}
             style={{ width: '100%', height: '100vh' }}
         >
-            <NavBar>Nav</NavBar>
+            <NavBar/>
             <div>
                 <div style= {{flexShrink: 10, marginTop: '40px', marginLeft: '30%'}}>
                     <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" /></a> 

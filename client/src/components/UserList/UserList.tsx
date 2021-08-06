@@ -19,10 +19,10 @@ const UserList: React.FC=()=>{
             {data&&
                 data.getAllUsers.map((user?:any)=>{
                     return (
-                        <>
+                        <div key={user.id}>
                         <User id={user.id} username={user.username} email={user.email} ecopoints={user.ecopoints} />
                         <Divider/>
-                        </>
+                        </div>
                     )
                 })
                 }

@@ -9,6 +9,7 @@ import { Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import { makeStyles } from "@material-ui/core/styles";
+import { GET_ALL_USERS } from '../../graphql/queries';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -26,7 +27,14 @@ const CreateAction: React.FC=()=>{
     const [username, setUsername]=useState("")
     const [email, setEmail]=useState("")
 
-    const [createUser, {loading,error}]=useMutation(CREATE_USER)
+    const [createUser, {loading,error}]=useMutation(CREATE_USER,
+    {
+      refetchQueries: [
+        { query: GET_ALL_USERS }
+      ]
+    }
+    )
+
     const classes = useStyles();
 
     console.log(error)

@@ -138,8 +138,8 @@ const ColumnList: React.FC = () => {
         {
           Object.values(renderData).map((col: any) => {
             return (
-              <Grid item xs={3} className={classes.root} >
-                <Column key={col.columnName} col={col} />
+              <Grid key={col.columnName} item xs={3} className={classes.root} >
+                <Column  col={col} />
               </Grid>
             )
           })

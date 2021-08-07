@@ -114,10 +114,10 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn }) => {
                             {getNavItem({ name: 'DND Playground', classes: classes, href: '#Drag and Drop' })}
                             {getNavItem({ name: 'Settings', classes: classes, href: '#Settings' })} */}
                             <Typography variant="h4" className={classes.nav_item}>
-                                 <Link to="/createpage"> Action Creator</Link>
+                                 <Link to="/create"> Action Creator</Link>
                             </Typography>
                             <Typography variant="h4" className={classes.nav_item}>
-                                 <Link to="/ndnpage"> DND Playground</Link>
+                                 <Link to="/ndn"> DND Playground</Link>
                             </Typography>
                             <Typography variant="h4" className={classes.nav_item}>
                                  <Link to="/about"> About</Link>

@@ -6,12 +6,13 @@ import {
   ApolloProvider,
 } from "@apollo/client"; //server component handling graphQL requests
 
-import HomePage from './pages/HomePage';
+// import HomePage from './pages/HomePage';
 import DNDPage from './pages/DNDPage';
 import CreatePage from './pages/CreatePage';
 
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import AboutPage from './pages/AboutPage';
+import { LoginPage } from './pages/LoginPage/LoginPage';
  
 
 
@@ -27,10 +28,12 @@ function App() {
        <Router>
       <div className="App">
         {/* <h1>Lou Team</h1> */}
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/createpage" component={CreatePage} />
-        <Route exact path="/ndnpage" component={DNDPage} />
-        <Route exact path="/about" component={AboutPage} />
+        {/* <Route exact path="/" component={HomePage} /> */}
+        <Route exact path="/" component={LoginPage} />
+        <Route exact path={"/about"} component={AboutPage} />
+        <Route exact path="/create" component={CreatePage} />
+        <Route exact path="/ndn" component={DNDPage} />
+        
         {/* <HomePage />
         <TempPage /> */}
       </div>

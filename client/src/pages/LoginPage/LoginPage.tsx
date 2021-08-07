@@ -3,9 +3,11 @@ import Box from '@material-ui/core/Box';
 import makeStyles from '@material-ui/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import NavBar from './navbar';
+import NavBar from '../../components/NavBar';
+import HomePage from '../HomePage';
+import { Email } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
-// functions need fixing... button and textfield
 const useSty = makeStyles({
     flexColumn: {
         display: 'flex',
@@ -13,8 +15,9 @@ const useSty = makeStyles({
     },
     title: {
         fontSize: 34,
-        marginTop: '5%',
-        color: '#EBEBEB'
+        // marginTop: '5%',
+        color: '#EBEBEB',
+        textAlign:'center' 
     },
     cardField: {
         width: '40%',
@@ -24,37 +27,31 @@ const useSty = makeStyles({
 
 });
 
-/*class LoginComponent extends React.Component {
-    constructor() {
-        this.state = {
-            Username: ""
-        }
-    }*/
-
-export default function Loginpage() {
-    const { flexColumn, title, cardField } = useSty();
-    const [Username, Email]= useState('');
-    return ( 
+export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>}> = ({onClick}) => {
+    const classes = useSty();
+    const [Username, setUsername] = useState<string>('');
+    const [Email, setEmail] = useState<string>('');
+   
+    return (
         <Box
             bgcolor="#113537"
-            className={flexColumn}
+            className={classes.flexColumn}
             style={{ width: '100%', height: '100vh' }}
         >
-            <NavBar/>
+            {/* <NavBar loggedIn={false}/> */}
             <div>
-                <div style= {{flexShrink: 10, marginTop: '40px', marginLeft: '30%'}}>
+                <div style= {{flexShrink: 10,  margin: '6rem auto', textAlign:'center' }}>
                     <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" /></a> 
                 </div>
-                <Box className= {`${flexColumn} ${cardField}`} style={{display: 'inline-flex', flexDirection: 'column-reverse', marginLeft: '31%'}}>
-                    <div className={title} style = {{marginLeft: '35%'}}>
+                {/* <Box className= {`${classes.flexColumn} ${classes.cardField}`} > */}
+                    <div className={classes.title}   >
                         Login
                     </div>
-                </Box>
+                {/* </Box> */}
                 
             </div>
             <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%', marginTop: '2%'}}>
                 <TextField 
-                    input id="Ssername"
                     label="Username"
                     variant = 'filled'
                     required
@@ -65,12 +62,13 @@ export default function Loginpage() {
                             padding: '15 30px',
                         }
                     }}
-                    onInput={()=>this.setState({Username: this.value})}
+                    type="text"
+                    value={Username}
+                    onChange = {(ev: React.ChangeEvent<HTMLInputElement>): void => setUsername(ev.target.value)}
                 ></TextField>
             </div>
             <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%'}}>
                 <TextField 
-                    input id='Email'
                     label="Email"
                     variant= 'filled'
                     inputProps= {{
@@ -80,21 +78,24 @@ export default function Loginpage() {
                             padding: '15 30px',
                         }
                     }} 
+                    type="text"
+                    value={Email}
+                    onChange = {(ev: React.ChangeEvent<HTMLInputElement>): void => setEmail(ev.target.value)}
+
                 ></TextField>
             </div>
             <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '35%', marginRight: '40%', marginTop: '2%'}}>
                 <Button 
                     size = 'medium'
                     variant = 'contained'
-                    color = 'primary'
+                    // onClick= {HomePage}
                     style = {{
                         backgroundColor: '#2CF9AC',
                         padding: "10px 20px",
                         color: 'black'
                     }}
-                    onClick= "location.href='/home'"
-                >Login</Button>
+                ><Link style={{textDecoration:"none"}} to="/about"> LOGIN</Link></Button>
             </div>
         </Box> 
     )       
-}
+};

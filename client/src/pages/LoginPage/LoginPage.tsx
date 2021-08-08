@@ -38,9 +38,9 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
             className={classes.flexColumn}
             style={{ width: '100%', height: '100vh' }}
         >
-            {/* <NavBar loggedIn={false}/> */}
+            <NavBar loggedIn={false} points={0} /> 
             <div>
-                <div style= {{flexShrink: 10,  marginLeft: '30%', marginTop: '5%'}}>
+                <div style= {{flexShrink: 10, display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginTop: '5%'}}>
                     <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" /></a> 
                 </div>
                 <Box className= {`${classes.flexColumn} ${classes.cardField}`}>

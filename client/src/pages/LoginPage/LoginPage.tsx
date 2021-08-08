@@ -120,7 +120,8 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
                     // onClick= {HomePage}
                     style = {{
                         backgroundColor: '#2CF9AC',
-                        color: 'black'
+                        color: 'black',
+                        fontStyle: 'bold'
                     }}
                 ><Link style={{textDecoration:"none", color: 'black'}} to="/about"> LOGIN</Link></Button>
             </div>

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 }));
-const AboutPage: React.FC = () => {
+const CreatePage: React.FC = () => {
   const classes = useStyles();
   return (
 
@@ -43,4 +43,4 @@ const AboutPage: React.FC = () => {
   )
 }
 
-export default AboutPage
+export default CreatePage

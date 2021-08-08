@@ -24,6 +24,7 @@ const useSty = makeStyles((theme:Theme) => ({
         marginTop: '5%',
         color: '#EBEBEB',
         textAlign:'center',
+        display: 'flex'
     },
     cardField: {
         width: '40%',

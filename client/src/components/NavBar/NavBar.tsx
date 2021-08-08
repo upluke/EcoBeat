@@ -77,14 +77,14 @@ const theme = createTheme({
 //     )
 // }
 
-function getInfoGroupIfLoggedIn(props: { classes: { [index: string]: string }; loggedIn: boolean, points: any,loginUser:string }) {
-    const { classes, loggedIn, points,loginUser } = props;
+function getInfoGroupIfLoggedIn(props: { classes: { [index: string]: string }; loggedIn: boolean, points: any, loginUser: string }) {
+    const { classes, loggedIn, points, loginUser } = props;
 
     if (loggedIn) {
         return (
             < List component="nav" className={classes.info_group} >
                 <ListItem className={classes.list_item}>
-                    <ListItemText primary={loginUser}/>
+                    <ListItemText primary={loginUser} />
                 </ListItem>
 
                 <ListItem className={classes.list_item}>
@@ -117,13 +117,13 @@ function getInfoGroupIfLoggedIn(props: { classes: { [index: string]: string }; l
 export interface NavBarInterface {
     loggedIn: boolean;
     points: any;
-    loginUser:string;
+    loginUser: string;
 }
 
 // const ActionCard: React.FC<ActionCardInterface> = ({ actionDescription, ecopoints }) => {
 //     const classes = useStyles();
 
-const NavBar: React.FC<NavBarInterface> = ({ loggedIn, points,loginUser }) => {
+const NavBar: React.FC<NavBarInterface> = ({ loggedIn, points, loginUser }) => {
     const classes = useStyles();
     // const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
@@ -147,14 +147,14 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn, points,loginUser }) => {
                                 <Link to="/create" className={classes.link}> Action Creator</Link>
                             </Typography>
                             <Typography className={classes.nav_item}>
-                                <Link to="/ndn" className={classes.link}> DND Playground</Link>
+                                <Link to="/ndn" className={classes.link}> HomePage</Link>
                             </Typography>
                             <Typography className={classes.nav_item}>
                                 <Link to="/about" className={classes.link}> About</Link>
                             </Typography>
                         </Box>
 
-                        {getInfoGroupIfLoggedIn({ classes: classes, loggedIn: loggedIn, points: points,loginUser:loginUser })}
+                        {getInfoGroupIfLoggedIn({ classes: classes, loggedIn: loggedIn, points: points, loginUser: loginUser })}
 
 
                     </Toolbar>

@@ -6,9 +6,13 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { ActionInterface } from '../../interface/interface'
 import { DELETE_ACTION } from '../../graphql/mutations';
 import { useMutation } from '@apollo/client';
+import { GET_ALL_ACTIONS } from '../../graphql/queries';
+
 
 const Action: React.FC<ActionInterface>=({id, actionDescription,ecopoints})=>{
-    const [deleteUser, {error}]=useMutation(DELETE_ACTION)
+    const [deleteUser, {error}]=useMutation(DELETE_ACTION,{
+      refetchQueries:[{query:GET_ALL_ACTIONS}]
+    })
     return(
         <div style={{backgroundColor:"#969398"}}>
             

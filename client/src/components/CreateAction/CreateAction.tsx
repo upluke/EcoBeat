@@ -31,14 +31,6 @@ const CreateAction: React.FC=()=>{
         refetchQueries:[{query:GET_ALL_ACTIONS}]
     })
 
-
-    // const [createUser, {loading,error}]=useMutation(CREATE_USER,
-    //     {
-    //       refetchQueries: [
-    //         { query: GET_ALL_USERS }
-    //       ]
-    //     }
-    //     )
     const classes = useStyles();
 
     console.log(error)

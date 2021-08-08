@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { GET_ALL_COLUMNS } from '../../graphql/queries'
 import { useQuery } from '@apollo/client'
 import Column from '../Column/Column'
@@ -18,24 +18,27 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const ColumnList: React.FC = () => {
+const ColumnList: React.FC<any> = ({setPoints}) => {
 
   const {loading:columnLoading,data:columnData } = useQuery(GET_ALL_COLUMNS)
   const {loading:actionLoading,data:actionData } = useQuery(GET_ALL_ACTIONS)
- 
+  const [renderData, setRenderData] = useState<any[]>([])
 
-  const [renderData, setRenderData] = React.useState<any[]>([])
- 
+  console.log("data ------>", renderData)
 
-  React.useEffect(() => {
+  useEffect(() => {
+      const ac = new AbortController();
       if (!columnLoading && columnData && !actionLoading && actionData){
         let groupedData = getItemsByCategories(columnData.getAllColumns, "columnName");
+        console.log("action data,",actionData)
         let actionArr:any[]=[]
         for (const el of actionData.getAllActions){
           actionArr.push(el["id"])
         }
+        console.log("groupedData",groupedData)
         let copyOfGroupedData=cloneDeep(groupedData)
         let orderedActionsOfRequest=copyOfGroupedData["request"]["orderedActions"]
+        
         let difference = orderedActionsOfRequest
                  .filter((x:any) => !actionArr.includes(x))
                  .concat(actionArr.filter((x:any) => !orderedActionsOfRequest.includes(x)));
@@ -47,8 +50,27 @@ const ColumnList: React.FC = () => {
  
       setRenderData(copyOfGroupedData)
     }
+    return () => ac.abort();
   }, [columnLoading,actionLoading, columnData,actionData])
 
+  useEffect(() => {
+    const ac = new AbortController();
+    if(renderData){
+      let copyOfRenderData:any=cloneDeep(renderData)
+      let finishedActions=copyOfRenderData["finished"]?.orderedActions // optional chaining
+      let ecoArr:any[]=[]
+      for (const el of actionData?.getAllActions){
+        if(finishedActions?.includes(el.id)){
+          ecoArr.push(el["ecopoints"])
+        }
+        
+      }
+      let sum=ecoArr?.reduce((a, b) => a + b, 0)
+      console.log(sum)
+      setPoints(sum)
+    }
+    return () => ac.abort();
+ }, [renderData,actionData,setPoints])
 
   const getItemsByCategories = (objectArray: any, property: any) => {
     return objectArray.reduce((acc: any, obj: any) => {

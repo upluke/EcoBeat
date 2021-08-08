@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         nav_item: {
             flexGrow: .05,
+            fontSize: '2.3em',
             // marginRight: 30,
             // marginLeft: 30,
             //variant: "h1"
@@ -39,6 +40,15 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         list_item: {
             padding: 1,
+        },
+        link:
+        {
+            textDecoration: 'none',
+            color: "#000000",
+            "&:hover": {
+                // color: "#007056",
+                textDecoration: 'underline rgb(95,73,74) ',
+            }
         }
 
     }),
@@ -122,8 +132,8 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn, points }) => {
                 <AppBar position="static" >
                     <Toolbar className={classes.customizeToolbar}>
 
-                        <Typography variant="h2" className={classes.title}>
-                            <Link to="/about">EcoBeat</Link>
+                        <Typography className={classes.title} style={{ fontSize: '4.5em' }}>
+                            <Link to="/about" className={classes.link}>EcoBeat</Link>
                         </Typography>
 
                         <Box display='flex' flexGrow={1}>
@@ -131,14 +141,15 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn, points }) => {
                             {/* {getNavItem({ name: 'About', classes: classes, href: '#about' })}
                             {getNavItem({ name: 'DND Playground', classes: classes, href: '#Drag and Drop' })}
                             {getNavItem({ name: 'Settings', classes: classes, href: '#Settings' })} */}
-                            <Typography variant="h4" className={classes.nav_item}>
-                                <Link to="/create"> Action Creator</Link>
+
+                            <Typography className={classes.nav_item} >
+                                <Link to="/create" className={classes.link}> Action Creator</Link>
                             </Typography>
-                            <Typography variant="h4" className={classes.nav_item}>
-                                <Link to="/ndn"> DND Playground</Link>
+                            <Typography className={classes.nav_item}>
+                                <Link to="/ndn" className={classes.link}> DND Playground</Link>
                             </Typography>
-                            <Typography variant="h4" className={classes.nav_item}>
-                                <Link to="/about"> About</Link>
+                            <Typography className={classes.nav_item}>
+                                <Link to="/about" className={classes.link}> About</Link>
                             </Typography>
                         </Box>
 

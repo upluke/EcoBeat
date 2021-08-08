@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import React from 'react'
 import Paper from '@material-ui/core/Paper';
 import HelpDisplay from '../../components/HelpDisplay';
+import SearchBar from '../../components/SearchBar';
 import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,22 +28,15 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 8
   },
   title: {
-    // padding: "0 1rem",
-    // margin: "2rem 0",
-    // textAlign: "center",
-    // color: "white",
-
-    textAlign: 'center',
     marginLeft: 'auto',
     marginRight: 'auto',
     width: '8em',
-    fontSize: '1.5em',
-
+    fontSize: '1.6vw',
   },
   brown_paper: {
     padding: theme.spacing(2.3),
-    paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(.5),
+    paddingBottom: theme.spacing(3.5),
+    paddingTop: theme.spacing(1),
     minHeight: '6vw',
     textAlign: 'center',
     backgroundColor: 'rgba(164,91,91,.53)',
@@ -52,8 +46,9 @@ const useStyles = makeStyles((theme) => ({
     square: false,
     backgroundColor: 'rgba(218,254,226)',
     borderRadius: '40px 40px 0px 0px',
-    padding: theme.spacing(3, 2),
-    height: '1.5vw',
+    paddingBottom: '1.3vw',
+    paddingTop: '1.2vw',
+    height: '2.2vw',
     textAlign: 'center',
     verticalAlign: 'middle',
   },
@@ -89,13 +84,12 @@ const Column: React.FC<ColumnInterface> = ({ col: { orderedActions, columnName }
       <Paper className={classes.green_paper} elevation={20} >
         <Typography className={classes.title}> {capitalizeFirstLetter(columnName)} </Typography>
       </Paper>
- 
       <Droppable droppableId={columnName}>
         {(provided) => (
           <div >
             <Paper className={classes.brown_paper}
               {...provided.droppableProps} ref={provided.innerRef}>
-
+              <SearchBar></SearchBar>
               {orderedActions && orderedActions.map((orderedAction, index) => (
                 <ColumnItem key={orderedAction} text={orderedAction} index={index} />
               ))}

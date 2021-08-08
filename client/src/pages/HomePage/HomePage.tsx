@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
       {/* This loggedIn property should use a function */}
       {/* That way, when it is false, the User Info (username, coins, etc) will not show. */}
 
-      <Grid container spacing={3} justify="center">
+      <Grid container spacing={3} justifyContent="center">
 
         <ActionList index={0} cards={RequestCards} title='Requests' />
         <ActionList index={1} cards={AcceptedCards} title='Accepted' />

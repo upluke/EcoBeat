@@ -23,22 +23,18 @@ const ColumnList: React.FC<any> = ({ setPoints }) => {
   const { loading: columnLoading, data: columnData } = useQuery(GET_ALL_COLUMNS)
   const { loading: actionLoading, data: actionData } = useQuery(GET_ALL_ACTIONS)
   const [renderData, setRenderData] = useState<any[]>([])
-
-  console.log("data ------>", renderData)
+ 
 
   useEffect(() => {
     const ac = new AbortController();
     if (!columnLoading && columnData && !actionLoading && actionData) {
       let groupedData = getItemsByCategories(columnData.getAllColumns, "columnName");
-      console.log("action data,", actionData)
       let actionArr: any[] = []
       for (const el of actionData.getAllActions) {
         actionArr.push(el["id"])
       }
-      console.log("groupedData", groupedData)
       let copyOfGroupedData = cloneDeep(groupedData)
       let orderedActionsOfRequest = copyOfGroupedData["request"]["orderedActions"]
-
       let difference = orderedActionsOfRequest
         .filter((x: any) => !actionArr.includes(x))
         .concat(actionArr.filter((x: any) => !orderedActionsOfRequest.includes(x)));
@@ -49,8 +45,9 @@ const ColumnList: React.FC<any> = ({ setPoints }) => {
       })
 
       setRenderData(copyOfGroupedData)
+      return () => ac.abort();
     }
-    return () => ac.abort();
+    
   }, [columnLoading, actionLoading, columnData, actionData])
 
   useEffect(() => {
@@ -66,10 +63,11 @@ const ColumnList: React.FC<any> = ({ setPoints }) => {
         }
       }
       let sum = ecoArr?.reduce((a, b) => a + b, 0)
-      console.log(sum)
+   
       setPoints(sum)
+      return () => ac.abort();
     }
-    return () => ac.abort();
+    
   }, [renderData, actionData, setPoints])
 
   const getItemsByCategories = (objectArray: any, property: any) => {
@@ -163,7 +161,7 @@ const ColumnList: React.FC<any> = ({ setPoints }) => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Grid container spacing={3} justify="center">
+      <Grid container spacing={3} justifyContent="center">
         {
           Object.values(renderData).map((col: any, index: any) => {
             return (

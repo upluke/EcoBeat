@@ -1,7 +1,7 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import {
     useMutation
-  } from "@apollo/client"; 
+} from "@apollo/client";
 
 import { CREATE_USER } from '../../graphql/mutations';
 import { TextField } from '@material-ui/core';
@@ -15,52 +15,52 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-      margin: "1rem 1rem ",
-      padding:"0.5rem 1rem",
-      display: "flex",
-      flexDirection: 'column',
+        margin: "1rem 1rem ",
+        padding: "0.5rem 1rem",
+        display: "flex",
+        flexDirection: 'column',
     },
     button: {
         margin: theme.spacing(1),
         backgroundColor: '#2CF9AC'
-      },
-  }));
+    },
+}));
 
-const CreateAction: React.FC=()=>{
-    const [username, setUsername]=useState("")
-    const [email, setEmail]=useState("")
+const CreateAction: React.FC = () => {
+    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
 
-    const [createUser, {loading,error}]=useMutation(CREATE_USER,
-    {
-      refetchQueries: [
-        { query: GET_ALL_USERS }
-      ]
-    }
+    const [createUser, { loading, error }] = useMutation(CREATE_USER,
+        {
+            refetchQueries: [
+                { query: GET_ALL_USERS }
+            ]
+        }
     )
 
     const classes = useStyles();
 
-  
+
     if (loading) return <h1>Loading...</h1>;
     if (error) return <h1>Something went wrong!</h1>;
-    return(
+    return (
         <div className={classes.paper}>
-            
-            <TextField 
+
+            <TextField
                 margin="normal"
-                type="text" 
-                label="username" 
+                type="text"
+                label="username"
                 autoFocus
-                onChange={(e)=>{
+                onChange={(e) => {
                     setUsername(e.target.value)
                 }}
             />
-            <TextField 
+            <TextField
                 margin="normal"
-                type="text" 
-                label="email" 
+                type="text"
+                label="email"
                 autoFocus
-                onChange={(e)=>{
+                onChange={(e) => {
                     setEmail(e.target.value)
                 }}
             />
@@ -70,14 +70,14 @@ const CreateAction: React.FC=()=>{
                 size="large"
                 className={classes.button}
                 startIcon={<SaveIcon />}
-                onClick={()=>{
+                onClick={() => {
                     createUser({
-                        variables:{username:username, email:email}
+                        variables: { username: username, email: email }
                     })
                 }}
-            ><Link style={{textDecoration:"none"}} to="/about"> GREATE USER</Link> </Button>
+            ><Link style={{ textDecoration: "none" }} to="/about"> CREATE USER</Link> </Button>
 
-        </div> 
+        </div>
     )
 }
 

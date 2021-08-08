@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from '../../components/NavBar';
+import RandomFact from '../../components/RandomFact';
 import Box from '@material-ui/core/Box';
 import makeStyles from '@material-ui/styles/makeStyles';
 import Card from '@material-ui/core/Card';
@@ -72,7 +73,7 @@ const AboutPage: React.FC = () => {
                     </Card>
                 </div>
                 <div style={{ margin: '20px auto', backgroundColor: '#113537', color: '#EBEBEB', fontSize: 24 }}>
-                    <p>**Use cold water when doing your laundry loads. It helps cut down on 90% of the energy your washer uses to run a load.**</p>
+                    <RandomFact />
                 </div>
             </Box>
         </div>

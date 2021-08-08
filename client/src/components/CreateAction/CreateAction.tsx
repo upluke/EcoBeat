@@ -1,7 +1,7 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import {
     useMutation
-  } from "@apollo/client"; 
+} from "@apollo/client";
 
 import { CREATE_ACTION } from '../../graphql/mutations';
 import { TextField } from '@material-ui/core';
@@ -13,46 +13,52 @@ import { GET_ALL_ACTIONS } from '../../graphql/queries';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-      margin: "1rem 1rem ",
-      padding:"0.5rem 1rem",
-      display: "flex",
-      flexDirection: 'column',
+        margin: "1rem 1rem ",
+        padding: "0.5rem 1rem",
+        display: "flex",
+        flexDirection: 'column',
+        backgroundColor: "#DAFEE2"
     },
     button: {
         margin: theme.spacing(1),
-      },
-  }));
+        backgroundColor: "#2CF9AC",
+        color: "black",
+        '&:hover': {
+            background: "white",
+        },
+    },
+}));
 
-const CreateAction: React.FC=()=>{
-    const [actionDescription, setaActionDescription]=useState("")
-    const [ecopoints, setEcopoints]=useState(0)
+const CreateAction: React.FC = () => {
+    const [actionDescription, setaActionDescription] = useState("")
+    const [ecopoints, setEcopoints] = useState(0)
 
-    const [createAction, {loading,error}]=useMutation(CREATE_ACTION,{
-        refetchQueries:[{query:GET_ALL_ACTIONS}]
+    const [createAction, { loading, error }] = useMutation(CREATE_ACTION, {
+        refetchQueries: [{ query: GET_ALL_ACTIONS }]
     })
 
     const classes = useStyles();
 
     if (loading) return <h1>Loading...</h1>;
     if (error) return <h1>Something went wrong!</h1>;
-    return(
+    return (
         <Paper className={classes.paper}>
-            
-            <TextField 
+
+            <TextField
                 margin="normal"
-                type="text" 
-                label="Description" 
+                type="text"
+                label="Description"
                 autoFocus
-                onChange={(e)=>{
+                onChange={(e) => {
                     setaActionDescription(e.target.value)
                 }}
             />
-           <TextField 
+            <TextField
                 margin="normal"
-                type="number" 
-                label="Price" 
+                type="number"
+                label="Price"
                 autoFocus
-                onChange={(e)=>{
+                onChange={(e) => {
                     setEcopoints(parseInt(e.target.value))
                 }}
             />
@@ -62,14 +68,14 @@ const CreateAction: React.FC=()=>{
                 size="large"
                 className={classes.button}
                 startIcon={<SaveIcon />}
-                onClick={()=>{
+                onClick={() => {
                     createAction({
-                        variables:{actionDescription:actionDescription, ecopoints:ecopoints }
+                        variables: { actionDescription: actionDescription, ecopoints: ecopoints }
                     })
                 }}
             >Create Card</Button>
 
-        </Paper> 
+        </Paper>
     )
 }
 

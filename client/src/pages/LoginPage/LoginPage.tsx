@@ -23,7 +23,7 @@ const useSty = makeStyles((theme: Theme) => ({
         fontSize: 30,
         marginTop: '5%',
         color: '#EBEBEB',
-        textAlign:'center',
+        textAlign: 'center',
         display: 'flex'
     },
     cardField: {
@@ -69,8 +69,9 @@ export const LoginPage: React.FC<{ onClick?: React.MouseEventHandler<HTMLElement
         >
             <NavBar loggedIn={false} points={0} loginUser={""} />
             <div>
+                {/* Image from https://undraw.co/illustrations */}
                 <div style={{ flexShrink: 10, display: 'flex', flexDirection: 'column-reverse', textAlign: 'center', marginTop: '3%' }}>
-                    <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" width="auto" height="225px" /></a>
+                    <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" width="auto" height="225px" alt='Woman in brown sweater with two green leaves besides her, minimalist art' /></a>
                 </div>
                 <Box className={`${classes.flexColumn} ${classes.cardField}`}>
                     <div className={classes.title}

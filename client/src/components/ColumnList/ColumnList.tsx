@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { GET_ALL_COLUMNS } from '../../graphql/queries'
 import { useQuery } from '@apollo/client'
 import Column from '../Column/Column'
@@ -18,59 +18,59 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const ColumnList: React.FC<any> = ({setPoints}) => {
+const ColumnList: React.FC<any> = ({ setPoints }) => {
 
-  const {loading:columnLoading,data:columnData } = useQuery(GET_ALL_COLUMNS)
-  const {loading:actionLoading,data:actionData } = useQuery(GET_ALL_ACTIONS)
+  const { loading: columnLoading, data: columnData } = useQuery(GET_ALL_COLUMNS)
+  const { loading: actionLoading, data: actionData } = useQuery(GET_ALL_ACTIONS)
   const [renderData, setRenderData] = useState<any[]>([])
 
   console.log("data ------>", renderData)
 
   useEffect(() => {
-      const ac = new AbortController();
-      if (!columnLoading && columnData && !actionLoading && actionData){
-        let groupedData = getItemsByCategories(columnData.getAllColumns, "columnName");
-        console.log("action data,",actionData)
-        let actionArr:any[]=[]
-        for (const el of actionData.getAllActions){
-          actionArr.push(el["id"])
+    const ac = new AbortController();
+    if (!columnLoading && columnData && !actionLoading && actionData) {
+      let groupedData = getItemsByCategories(columnData.getAllColumns, "columnName");
+      console.log("action data,", actionData)
+      let actionArr: any[] = []
+      for (const el of actionData.getAllActions) {
+        actionArr.push(el["id"])
+      }
+      console.log("groupedData", groupedData)
+      let copyOfGroupedData = cloneDeep(groupedData)
+      let orderedActionsOfRequest = copyOfGroupedData["request"]["orderedActions"]
+
+      let difference = orderedActionsOfRequest
+        .filter((x: any) => !actionArr.includes(x))
+        .concat(actionArr.filter((x: any) => !orderedActionsOfRequest.includes(x)));
+      Object.values(copyOfGroupedData).map((cog: any) => {
+        if (cog.columnName === 'request') {
+          cog.orderedActions = [...cog.orderedActions, ...difference]
         }
-        console.log("groupedData",groupedData)
-        let copyOfGroupedData=cloneDeep(groupedData)
-        let orderedActionsOfRequest=copyOfGroupedData["request"]["orderedActions"]
-        
-        let difference = orderedActionsOfRequest
-                 .filter((x:any) => !actionArr.includes(x))
-                 .concat(actionArr.filter((x:any) => !orderedActionsOfRequest.includes(x)));
-        Object.values(copyOfGroupedData).map((cog:any)=>{
-          if(cog.columnName==='request'){
-            cog.orderedActions= [...cog.orderedActions,...difference]
-          }
-        })
- 
+      })
+
       setRenderData(copyOfGroupedData)
     }
     return () => ac.abort();
-  }, [columnLoading,actionLoading, columnData,actionData])
+  }, [columnLoading, actionLoading, columnData, actionData])
 
   useEffect(() => {
     const ac = new AbortController();
-    if(renderData&&actionData){
-      let copyOfRenderData:any=cloneDeep(renderData)
-      let finishedActions=copyOfRenderData["finished"]?.orderedActions // optional chaining
-      let ecoArr:any[]=[]
-      
-      for (const el of actionData?.getAllActions){
-          if(finishedActions?.includes(el.id)){
-            ecoArr.push(el["ecopoints"])
-          }
+    if (renderData && actionData) {
+      let copyOfRenderData: any = cloneDeep(renderData)
+      let finishedActions = copyOfRenderData["finished"]?.orderedActions // optional chaining
+      let ecoArr: any[] = []
+
+      for (const el of actionData?.getAllActions) {
+        if (finishedActions?.includes(el.id)) {
+          ecoArr.push(el["ecopoints"])
+        }
       }
-      let sum=ecoArr?.reduce((a, b) => a + b, 0)
+      let sum = ecoArr?.reduce((a, b) => a + b, 0)
       console.log(sum)
       setPoints(sum)
     }
     return () => ac.abort();
- }, [renderData,actionData,setPoints])
+  }, [renderData, actionData, setPoints])
 
   const getItemsByCategories = (objectArray: any, property: any) => {
     return objectArray.reduce((acc: any, obj: any) => {
@@ -165,16 +165,16 @@ const ColumnList: React.FC<any> = ({setPoints}) => {
     <DragDropContext onDragEnd={onDragEnd}>
       <Grid container spacing={3} justify="center">
         {
-          Object.values(renderData).map((col: any) => {
+          Object.values(renderData).map((col: any, index: any) => {
             return (
               <Grid key={col.columnName} item xs={3} className={classes.root} >
-                <Column key={col.columnName} col={col} />
+                <Column index={index} key={col.columnName} col={col} />
               </Grid>
             )
           })
         }
-      </Grid>
-    </DragDropContext>
+      </Grid >
+    </DragDropContext >
   )
 }
 

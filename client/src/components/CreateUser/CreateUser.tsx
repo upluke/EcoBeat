@@ -5,11 +5,13 @@ import {
 
 import { CREATE_USER } from '../../graphql/mutations';
 import { TextField } from '@material-ui/core';
-import { Paper } from '@material-ui/core';
+// import { Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import { makeStyles } from "@material-ui/core/styles";
 import { GET_ALL_USERS } from '../../graphql/queries';
+
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -20,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         margin: theme.spacing(1),
+        backgroundColor: '#2CF9AC'
       },
   }));
 
@@ -41,7 +44,7 @@ const CreateAction: React.FC=()=>{
     if (loading) return <h1>Loading...</h1>;
     if (error) return <h1>Something went wrong!</h1>;
     return(
-        <Paper className={classes.paper}>
+        <div className={classes.paper}>
             
             <TextField 
                 margin="normal"
@@ -63,7 +66,7 @@ const CreateAction: React.FC=()=>{
             />
             <Button
                 variant="contained"
-                color="secondary"
+                color="default"
                 size="large"
                 className={classes.button}
                 startIcon={<SaveIcon />}
@@ -72,9 +75,9 @@ const CreateAction: React.FC=()=>{
                         variables:{username:username, email:email}
                     })
                 }}
-            >Create User</Button>
+            ><Link style={{textDecoration:"none"}} to="/about"> GREATE USER</Link> </Button>
 
-        </Paper> 
+        </div> 
     )
 }
 

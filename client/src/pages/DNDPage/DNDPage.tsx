@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import NavBar from '../../components/NavBar';
 import ColumnList from '../../components/ColumnList';
 // import { makeStyles } from "@material-ui/core/styles";
@@ -31,8 +31,8 @@ import ColumnList from '../../components/ColumnList';
 
 
 const DNDPage: React.FC<any> = () => {
-  const [points,setPoints ]=useState(0)
-  
+  const [points, setPoints] = useState(0)
+
   return (
     <div >
       <NavBar loggedIn={true} points={points} />

@@ -9,7 +9,7 @@ import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         backdrop: {
-        
+            zIndex: theme.zIndex.drawer + 1,
             backgroundColor: 'rgba(0,0,0,.9)',
             color: '#fff',
         },

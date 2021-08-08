@@ -161,7 +161,7 @@ const ColumnList: React.FC<any> = ({ setPoints }) => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Grid container spacing={3} justify="center">
+      <Grid container spacing={3} justifyContent="center">
         {
           Object.values(renderData).map((col: any, index: any) => {
             return (

@@ -64,6 +64,7 @@ interface ColumnInterface {
     columnName: string;
     orderedActions: string[];
   }
+  index: number;
 }
 
 function capitalizeFirstLetter(text: string) {
@@ -71,14 +72,15 @@ function capitalizeFirstLetter(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-const Column: React.FC<ColumnInterface> = ({ col: { orderedActions, columnName } }) => {
+
+const Column: React.FC<ColumnInterface> = ({ col: { orderedActions, columnName }, index }) => {
   // const capColumnName = columnName.toUpperCase()
   const classes = useStyles();
   return (
     <div>
 
       <div style={{ float: 'right', paddingTop: '10px' }}>
-        <HelpDisplay helpMessage={'hello'} />
+        <HelpDisplay index={index} />
       </div>
 
       <Paper className={classes.green_paper} elevation={20} >

@@ -136,10 +136,10 @@ const ColumnList: React.FC = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <Grid container spacing={3} justify="center">
         {
-          Object.values(renderData).map((col: any) => {
+          Object.values(renderData).map((col: any, index: any) => {
             return (
               <Grid key={col.columnName} item xs={3} className={classes.root} >
-                <Column  col={col} />
+                <Column index={index} col={col} />
               </Grid>
             )
           })

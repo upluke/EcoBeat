@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface ActionListInterface {
-    helpMessage: string;
+    index: number;
     cards: React.ReactElement<typeof ActionCard>[];
     title: string;
 
@@ -60,13 +60,13 @@ function returnAddButtonIfRewards(title: string, classes: { [index: string]: str
     }
 }
 
-const ActionList: React.FC<ActionListInterface> = ({ helpMessage, cards, title }) => {
+const ActionList: React.FC<ActionListInterface> = ({ index, cards, title }) => {
     const classes = useStyles();
 
     return (
         <Grid item xs={3} className={classes.root}>
             <div style={{ float: 'right', paddingTop: '10px' }}>
-                <HelpDisplay helpMessage={helpMessage} />
+                <HelpDisplay index={index} />
             </div>
             <Paper className={classes.green_paper} elevation={20} >
                 <Typography style={{

@@ -36,9 +36,9 @@ const HomePage: React.FC = () => {
 
       <Grid container spacing={3} justify="center">
 
-        <ActionList helpMessage="hello1" cards={RequestCards} title='Requests' />
-        <ActionList helpMessage="hello2" cards={AcceptedCards} title='Accepted' />
-        <ActionList helpMessage="hello3" cards={RewardCards} title='Rewards' />
+        <ActionList index={0} cards={RequestCards} title='Requests' />
+        <ActionList index={1} cards={AcceptedCards} title='Accepted' />
+        <ActionList index={2} cards={RewardCards} title='Rewards' />
         {/* These helpMessages should be updated, perhaps taken from some file */}
       </Grid>
 

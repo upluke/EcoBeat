@@ -23,7 +23,8 @@ const useSty = makeStyles((theme: Theme) => ({
         fontSize: 30,
         marginTop: '5%',
         color: '#EBEBEB',
-        textAlign: 'center',
+        textAlign:'center',
+        display: 'flex'
     },
     cardField: {
         width: '40%',

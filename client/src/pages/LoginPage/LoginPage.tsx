@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -14,7 +14,7 @@ import Fade from '@material-ui/core/Fade';
 import CreateUser from '../../components/CreateUser';
 
 
-const useSty = makeStyles((theme:Theme) => ({
+const useSty = makeStyles((theme: Theme) => ({
     flexColumn: {
         display: 'flex',
         flexDirection: 'column'
@@ -23,7 +23,7 @@ const useSty = makeStyles((theme:Theme) => ({
         fontSize: 34,
         marginTop: '5%',
         color: '#EBEBEB',
-        textAlign:'center',
+        textAlign: 'center',
     },
     cardField: {
         width: '40%',
@@ -35,29 +35,29 @@ const useSty = makeStyles((theme:Theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'rgba(0,0,0,.6)',
-      },
+    },
     paper: {
         backgroundColor: theme.palette.background.paper,
         zIndex: theme.zIndex.drawer + 1,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
-      },
+    },
 
 }));
 
-export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>}> = ({onClick}) => {
+export const LoginPage: React.FC<{ onClick?: React.MouseEventHandler<HTMLElement> }> = ({ onClick }) => {
     const classes = useSty();
     const [Username, setUsername] = useState<string>('');
     const [Email, setEmail] = useState<string>('');
     const [open, setOpen] = React.useState(false);
 
     const handleOpen = () => {
-      setOpen(true);
+        setOpen(true);
     };
-  
+
     const handleClose = () => {
-      setOpen(false);
+        setOpen(false);
     };
 
     return (
@@ -66,25 +66,25 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
             className={classes.flexColumn}
             style={{ width: '100%', height: '100vh' }}
         >
-            <NavBar loggedIn={false} points={0} /> 
+            <NavBar loggedIn={false} points={0} />
             <div>
-                <div style= {{flexShrink: 10, display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginTop: '5%'}}>
-                    <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" /></a> 
+                <div style={{ flexShrink: 10, display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginTop: '5%' }}>
+                    <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" /></a>
                 </div>
-                <Box className= {`${classes.flexColumn} ${classes.cardField}`}>
-                    <div className= {classes.title} 
-                        style= {{marginLeft: '112%'}}
+                <Box className={`${classes.flexColumn} ${classes.cardField}`}>
+                    <div className={classes.title}
+                        style={{ marginLeft: '112%' }}
                     >
                         Login
                     </div>
-                </Box> 
+                </Box>
             </div>
-            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%', marginTop: '2%'}}>
-                <TextField 
+            <div style={{ display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%', marginTop: '2%' }}>
+                <TextField
                     label="Username"
-                    variant = 'filled'
+                    variant='filled'
                     required
-                    inputProps= {{
+                    inputProps={{
                         style: {
                             color: 'black',
                             backgroundColor: '#EBEBEB',
@@ -93,40 +93,40 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
                     }}
                     type="text"
                     value={Username}
-                    onChange = {(ev: React.ChangeEvent<HTMLInputElement>): void => setUsername(ev.target.value)}
+                    onChange={(ev: React.ChangeEvent<HTMLInputElement>): void => setUsername(ev.target.value)}
                 ></TextField>
             </div>
-            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%'}}>
-                <TextField 
+            <div style={{ display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%' }}>
+                <TextField
                     label="Email"
-                    variant= 'filled'
-                    inputProps= {{
+                    variant='filled'
+                    inputProps={{
                         style: {
                             color: 'black',
                             backgroundColor: '#EBEBEB',
                             padding: '15 30px',
                         }
-                    }} 
+                    }}
                     type="text"
                     value={Email}
-                    onChange = {(ev: React.ChangeEvent<HTMLInputElement>): void => setEmail(ev.target.value)}
+                    onChange={(ev: React.ChangeEvent<HTMLInputElement>): void => setEmail(ev.target.value)}
 
                 ></TextField>
             </div>
-            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '35%', marginRight: '40%', marginTop: '2%', paddingBottom: '5%'}}>
-                <Button 
-                    size = 'medium'
-                    variant = 'contained'
+            <div style={{ display: 'flex', flexDirection: 'column-reverse', marginLeft: '35%', marginRight: '40%', marginTop: '2%', paddingBottom: '5%' }}>
+                <Button
+                    size='medium'
+                    variant='contained'
                     // onClick= {HomePage}
-                    style = {{
+                    style={{
                         backgroundColor: '#2CF9AC',
                         padding: "10px 20px",
                         color: 'black'
                     }}
-                ><Link style={{textDecoration:"none"}} to="/about"> LOGIN</Link></Button>
+                ><Link style={{ textDecoration: "none" }} to="/about"> LOGIN</Link></Button>
             </div>
-            <div style={{margin:"0 auto" }}>
-                <button type="button" onClick={handleOpen} style = {{backgroundColor: '#2CF9AC',padding: "10px 20px",color: 'black'}}>
+            <div style={{ margin: "0 auto" }}>
+                <button type="button" onClick={handleOpen} style={{ backgroundColor: '#2CF9AC', padding: "10px 20px", color: 'black' }}>
                     CREATE A NEW USER
                 </button>
                 <Modal
@@ -138,19 +138,19 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
                     closeAfterTransition
                     BackdropComponent={Backdrop}
                     BackdropProps={{
-                    timeout: 500,
+                        timeout: 500,
                     }}
                 >
                     <Fade in={open}>
-                    <div className={classes.paper}>
-                        {/* <h2 id="transition-modal-title">Transition modal</h2>
+                        <div className={classes.paper}>
+                            {/* <h2 id="transition-modal-title">Transition modal</h2>
                         <p id="transition-modal-description">react-transition-group animates me.</p> */}
-                        <CreateUser/>
-                    </div>
-                 
+                            <CreateUser />
+                        </div>
+
                     </Fade>
                 </Modal>
-                </div>
-        </Box> 
-    )       
+            </div>
+        </Box>
+    )
 };

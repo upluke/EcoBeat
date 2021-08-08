@@ -9,6 +9,7 @@ import { Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import { makeStyles } from "@material-ui/core/styles";
+import { GET_ALL_ACTIONS } from '../../graphql/queries';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -26,7 +27,18 @@ const CreateAction: React.FC=()=>{
     const [actionDescription, setaActionDescription]=useState("")
     const [ecopoints, setEcopoints]=useState(0)
 
-    const [createAction, {loading,error}]=useMutation(CREATE_ACTION)
+    const [createAction, {loading,error}]=useMutation(CREATE_ACTION,{
+        refetchQueries:[{query:GET_ALL_ACTIONS}]
+    })
+
+
+    // const [createUser, {loading,error}]=useMutation(CREATE_USER,
+    //     {
+    //       refetchQueries: [
+    //         { query: GET_ALL_USERS }
+    //       ]
+    //     }
+    //     )
     const classes = useStyles();
 
     console.log(error)

@@ -55,15 +55,15 @@ const ColumnList: React.FC<any> = ({setPoints}) => {
 
   useEffect(() => {
     const ac = new AbortController();
-    if(renderData){
+    if(renderData&&actionData){
       let copyOfRenderData:any=cloneDeep(renderData)
       let finishedActions=copyOfRenderData["finished"]?.orderedActions // optional chaining
       let ecoArr:any[]=[]
+      
       for (const el of actionData?.getAllActions){
-        if(finishedActions?.includes(el.id)){
-          ecoArr.push(el["ecopoints"])
-        }
-        
+          if(finishedActions?.includes(el.id)){
+            ecoArr.push(el["ecopoints"])
+          }
       }
       let sum=ecoArr?.reduce((a, b) => a + b, 0)
       console.log(sum)
@@ -167,7 +167,7 @@ const ColumnList: React.FC<any> = ({setPoints}) => {
         {
           Object.values(renderData).map((col: any) => {
             return (
-              <Grid item xs={3} className={classes.root} >
+              <Grid key={col.columnName} item xs={3} className={classes.root} >
                 <Column key={col.columnName} col={col} />
               </Grid>
             )

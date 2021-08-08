@@ -89,7 +89,7 @@ const Column: React.FC<ColumnInterface> = ({ col: { orderedActions, columnName }
       <Paper className={classes.green_paper} elevation={20} >
         <Typography className={classes.title}> {capitalizeFirstLetter(columnName)} </Typography>
       </Paper>
-
+ 
       <Droppable droppableId={columnName}>
         {(provided) => (
           <div >

@@ -6,6 +6,9 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
 
+import { GET_ALL_ACTIONS } from '../../graphql/queries'
+import { cloneDeep } from 'lodash';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -15,27 +18,36 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
-// interface ColumnInterface {
-//     columnName:string;
-//     orderedActions: string[];
-
-// }
-
-
-
 const ColumnList: React.FC = () => {
 
-  const { loading, data, error } = useQuery(GET_ALL_COLUMNS)
-  const [renderData, setRenderData] = React.useState<any[]>([])
+  const {loading:columnLoading,data:columnData } = useQuery(GET_ALL_COLUMNS)
+  const {loading:actionLoading,data:actionData } = useQuery(GET_ALL_ACTIONS)
+ 
 
+  const [renderData, setRenderData] = React.useState<any[]>([])
+ 
 
   React.useEffect(() => {
-    if (!loading && data) {
-      let groupedData = getItemsByCategories(data.getAllColumns, "columnName");
-      setRenderData(groupedData)
+      if (!columnLoading && columnData && !actionLoading && actionData){
+        let groupedData = getItemsByCategories(columnData.getAllColumns, "columnName");
+        let actionArr:any[]=[]
+        for (const el of actionData.getAllActions){
+          actionArr.push(el["id"])
+        }
+        let copyOfGroupedData=cloneDeep(groupedData)
+        let orderedActionsOfRequest=copyOfGroupedData["request"]["orderedActions"]
+        let difference = orderedActionsOfRequest
+                 .filter((x:any) => !actionArr.includes(x))
+                 .concat(actionArr.filter((x:any) => !orderedActionsOfRequest.includes(x)));
+        Object.values(copyOfGroupedData).map((cog:any)=>{
+          if(cog.columnName==='request'){
+            cog.orderedActions= [...cog.orderedActions,...difference]
+          }
+        })
+ 
+      setRenderData(copyOfGroupedData)
     }
-  }, [loading, data])
+  }, [columnLoading,actionLoading, columnData,actionData])
 
 
   const getItemsByCategories = (objectArray: any, property: any) => {
@@ -48,7 +60,6 @@ const ColumnList: React.FC = () => {
       return acc;
     }, {});
   };
-
 
 
   const onDragEnd = ({ source, destination }: DropResult) => {
@@ -95,7 +106,6 @@ const ColumnList: React.FC = () => {
         (_: any, idx: number) => idx !== source.index
       )
 
-
       // Create a new start column
       const newStartCol = {
         columnName: startColumnData.columnName,
@@ -108,14 +118,11 @@ const ColumnList: React.FC = () => {
 
       newEndList.splice(destination.index, 0, startColumnData.orderedActions[source.index])
 
-
-
       //   Create a new end column
       const newEndCol = {
         columnName: endColumnData.columnName,
         orderedActions: newEndList
       }
-      console.log("newEndCol: ", newEndCol)
 
       //   Update the state
       setRenderData((state: any) => ({
@@ -138,8 +145,8 @@ const ColumnList: React.FC = () => {
         {
           Object.values(renderData).map((col: any) => {
             return (
-              <Grid key={col.columnName} item xs={3} className={classes.root} >
-                <Column  col={col} />
+              <Grid item xs={3} className={classes.root} >
+                <Column key={col.columnName} col={col} />
               </Grid>
             )
           })

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import makeStyles from '@material-ui/styles/makeStyles';
 import TextField from '@material-ui/core/TextField';
@@ -17,7 +17,7 @@ const useSty = makeStyles({
         fontSize: 34,
         // marginTop: '5%',
         color: '#EBEBEB',
-        textAlign:'center' 
+        textAlign: 'center'
     },
     cardField: {
         width: '40%',
@@ -27,35 +27,35 @@ const useSty = makeStyles({
 
 });
 
-export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>}> = ({onClick}) => {
+export const LoginPage: React.FC<{ onClick?: React.MouseEventHandler<HTMLElement> }> = ({ onClick }) => {
     const classes = useSty();
     const [Username, setUsername] = useState<string>('');
     const [Email, setEmail] = useState<string>('');
-   
+
     return (
         <Box
             bgcolor="#113537"
             className={classes.flexColumn}
             style={{ width: '100%', height: '100vh' }}
         >
-            {/* <NavBar loggedIn={false}/> */}
+            <NavBar loggedIn={false} points={0} />
             <div>
-                <div style= {{flexShrink: 10,  margin: '6rem auto', textAlign:'center' }}>
-                    <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" /></a> 
+                <div style={{ flexShrink: 10, margin: '6rem auto', textAlign: 'center' }}>
+                    <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" /></a>
                 </div>
                 {/* <Box className= {`${classes.flexColumn} ${classes.cardField}`} > */}
-                    <div className={classes.title}   >
-                        Login
-                    </div>
+                <div className={classes.title}   >
+                    Login
+                </div>
                 {/* </Box> */}
-                
+
             </div>
-            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%', marginTop: '2%'}}>
-                <TextField 
+            <div style={{ display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%', marginTop: '2%' }}>
+                <TextField
                     label="Username"
-                    variant = 'filled'
+                    variant='filled'
                     required
-                    inputProps= {{
+                    inputProps={{
                         style: {
                             color: 'black',
                             backgroundColor: '#EBEBEB',
@@ -64,38 +64,38 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
                     }}
                     type="text"
                     value={Username}
-                    onChange = {(ev: React.ChangeEvent<HTMLInputElement>): void => setUsername(ev.target.value)}
+                    onChange={(ev: React.ChangeEvent<HTMLInputElement>): void => setUsername(ev.target.value)}
                 ></TextField>
             </div>
-            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%'}}>
-                <TextField 
+            <div style={{ display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%' }}>
+                <TextField
                     label="Email"
-                    variant= 'filled'
-                    inputProps= {{
+                    variant='filled'
+                    inputProps={{
                         style: {
                             color: 'black',
                             backgroundColor: '#EBEBEB',
                             padding: '15 30px',
                         }
-                    }} 
+                    }}
                     type="text"
                     value={Email}
-                    onChange = {(ev: React.ChangeEvent<HTMLInputElement>): void => setEmail(ev.target.value)}
+                    onChange={(ev: React.ChangeEvent<HTMLInputElement>): void => setEmail(ev.target.value)}
 
                 ></TextField>
             </div>
-            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '35%', marginRight: '40%', marginTop: '2%'}}>
-                <Button 
-                    size = 'medium'
-                    variant = 'contained'
+            <div style={{ display: 'flex', flexDirection: 'column-reverse', marginLeft: '35%', marginRight: '40%', marginTop: '2%' }}>
+                <Button
+                    size='medium'
+                    variant='contained'
                     // onClick= {HomePage}
-                    style = {{
+                    style={{
                         backgroundColor: '#2CF9AC',
                         padding: "10px 20px",
                         color: 'black'
                     }}
-                ><Link style={{textDecoration:"none"}} to="/about"> LOGIN</Link></Button>
+                ><Link style={{ textDecoration: "none" }} to="/about"> LOGIN</Link></Button>
             </div>
-        </Box> 
-    )       
+        </Box>
+    )
 };

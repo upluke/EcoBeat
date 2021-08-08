@@ -66,7 +66,7 @@ export const LoginPage: React.FC<{ onClick?: React.MouseEventHandler<HTMLElement
             className={classes.flexColumn}
             style={{ width: '100%', height: '100vh' }}
         >
-            <NavBar loggedIn={false} points={0} />
+            <NavBar loggedIn={false} points={0} loginUser={""} />
             <div>
                 {/* Image from https://undraw.co/illustrations */}
                 <div style={{ flexShrink: 10, display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginTop: '5%' }}>

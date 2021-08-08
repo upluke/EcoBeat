@@ -31,10 +31,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 const CreatePage: React.FC = () => {
   const classes = useStyles();
-  const [points, setPoints] = useState(0)
+ 
   return (
     <div>
-      <NavBar loggedIn={true} points={points} />
+      <NavBar loggedIn={false} points="0" loginUser="" />
       <Paper className={classes.root}>
         {/* <div className={classes.list}>
           <CreateUser />

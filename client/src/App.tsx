@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
 import {
   ApolloClient,
@@ -21,8 +21,14 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+ 
+ 
+ 
 
-function App() {
+function App(){
+
+  
+ 
   return (
     <ApolloProvider client={client}>
        <Router>
@@ -33,7 +39,7 @@ function App() {
         <Route exact path={"/about"} component={AboutPage} />
         <Route exact path="/create" component={CreatePage} />
         <Route exact path="/ndn" component={DNDPage} />
-        
+      
         {/* <HomePage />
         <TempPage /> */}
       </div>

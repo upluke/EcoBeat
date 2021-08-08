@@ -30,7 +30,7 @@ const HomePage: React.FC = () => {
 
 
     <div className={classes.root}>
-      <NavBar loggedIn={true} />
+      {/* <NavBar loggedIn={true} points={0}/> */}
       {/* This loggedIn property should use a function */}
       {/* That way, when it is false, the User Info (username, coins, etc) will not show. */}
 

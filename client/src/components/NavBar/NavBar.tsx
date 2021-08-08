@@ -11,7 +11,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Box from '@material-ui/core/Box';
 import Coin from '../CoinIcon/Coin';
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -67,8 +67,8 @@ const theme = createTheme({
 //     )
 // }
 
-function getInfoGroupIfLoggedIn(props: { classes: { [index: string]: string }; loggedIn: boolean,points:any }) {
-    const { classes, loggedIn,points } = props;
+function getInfoGroupIfLoggedIn(props: { classes: { [index: string]: string }; loggedIn: boolean, points: any }) {
+    const { classes, loggedIn, points } = props;
 
     if (loggedIn) {
         return (< List component="nav" className={classes.info_group} >
@@ -89,13 +89,13 @@ function getInfoGroupIfLoggedIn(props: { classes: { [index: string]: string }; l
 }
 export interface NavBarInterface {
     loggedIn: boolean;
-    points:any
+    points: any
 }
 
 // const ActionCard: React.FC<ActionCardInterface> = ({ actionDescription, ecopoints }) => {
 //     const classes = useStyles();
 
-const NavBar: React.FC<NavBarInterface> = ({ loggedIn,points }) => {
+const NavBar: React.FC<NavBarInterface> = ({ loggedIn, points }) => {
     const classes = useStyles();
     // const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
@@ -115,17 +115,17 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn,points }) => {
                             {getNavItem({ name: 'DND Playground', classes: classes, href: '#Drag and Drop' })}
                             {getNavItem({ name: 'Settings', classes: classes, href: '#Settings' })} */}
                             <Typography variant="h4" className={classes.nav_item}>
-                                 <Link to="/create"> Action Creator</Link>
+                                <Link to="/create"> Action Creator</Link>
                             </Typography>
                             <Typography variant="h4" className={classes.nav_item}>
-                                 <Link to="/ndn"> DND Playground</Link>
+                                <Link to="/ndn"> DND Playground</Link>
                             </Typography>
                             <Typography variant="h4" className={classes.nav_item}>
-                                 <Link to="/about"> About</Link>
+                                <Link to="/about"> About</Link>
                             </Typography>
                         </Box>
 
-                        {getInfoGroupIfLoggedIn({ classes: classes, loggedIn: loggedIn, points:points })}
+                        {getInfoGroupIfLoggedIn({ classes: classes, loggedIn: loggedIn, points: points })}
 
 
                     </Toolbar>

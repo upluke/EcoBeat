@@ -16,6 +16,7 @@
     "@types/react-beautiful-dnd": "^13.1.1",
     "@types/react-dom": "^17.0.0",
     "graphql": "^15.5.1",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^17.0.2",
@@ -49,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.172",
     "@types/react-beautiful-dnd": "^13.1.1",
     "@types/react-router-dom": "^5.1.8"
   }

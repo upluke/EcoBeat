@@ -43,7 +43,7 @@ const AboutPage: React.FC = () => {
     const classes = useStyles();
     return (
         <div>
-            <NavBar loggedIn={false} />
+            <NavBar loggedIn={false} points={0} />
             <Box
                 bgcolor="#113537"
                 className={classes.flexColumn}

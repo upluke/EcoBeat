@@ -67,8 +67,8 @@ const theme = createTheme({
 //     )
 // }
 
-function getInfoGroupIfLoggedIn(props: { classes: { [index: string]: string }; loggedIn: boolean }) {
-    const { classes, loggedIn } = props;
+function getInfoGroupIfLoggedIn(props: { classes: { [index: string]: string }; loggedIn: boolean,points:any }) {
+    const { classes, loggedIn,points } = props;
 
     if (loggedIn) {
         return (< List component="nav" className={classes.info_group} >
@@ -82,19 +82,20 @@ function getInfoGroupIfLoggedIn(props: { classes: { [index: string]: string }; l
 
             <ListItem>
                 <Coin />
-                <ListItemText primary="100" />
+                <ListItemText primary={points} />
             </ListItem>
         </List >)
     }
 }
 export interface NavBarInterface {
     loggedIn: boolean;
+    points:any
 }
 
 // const ActionCard: React.FC<ActionCardInterface> = ({ actionDescription, ecopoints }) => {
 //     const classes = useStyles();
 
-const NavBar: React.FC<NavBarInterface> = ({ loggedIn }) => {
+const NavBar: React.FC<NavBarInterface> = ({ loggedIn,points }) => {
     const classes = useStyles();
     // const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
@@ -105,7 +106,7 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn }) => {
                     <Toolbar className={classes.customizeToolbar}>
 
                         <Typography variant="h2" className={classes.title}>
-                            EcoBeat
+                            <Link to="/about">EcoBeat</Link>
                         </Typography>
 
                         <Box display='flex' flexGrow={1}>
@@ -124,7 +125,7 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn }) => {
                             </Typography>
                         </Box>
 
-                        {getInfoGroupIfLoggedIn({ classes: classes, loggedIn: loggedIn })}
+                        {getInfoGroupIfLoggedIn({ classes: classes, loggedIn: loggedIn, points:points })}
 
 
                     </Toolbar>

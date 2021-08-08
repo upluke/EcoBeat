@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { GET_ALL_COLUMNS } from '../../graphql/queries'
 import { useQuery } from '@apollo/client'
 import Column from '../Column/Column'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
+
+import { GET_ALL_ACTIONS } from '../../graphql/queries'
+import { cloneDeep } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,28 +18,59 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+const ColumnList: React.FC<any> = ({ setPoints }) => {
 
-// interface ColumnInterface {
-//     columnName:string;
-//     orderedActions: string[];
+  const { loading: columnLoading, data: columnData } = useQuery(GET_ALL_COLUMNS)
+  const { loading: actionLoading, data: actionData } = useQuery(GET_ALL_ACTIONS)
+  const [renderData, setRenderData] = useState<any[]>([])
 
-// }
+  console.log("data ------>", renderData)
 
+  useEffect(() => {
+    const ac = new AbortController();
+    if (!columnLoading && columnData && !actionLoading && actionData) {
+      let groupedData = getItemsByCategories(columnData.getAllColumns, "columnName");
+      console.log("action data,", actionData)
+      let actionArr: any[] = []
+      for (const el of actionData.getAllActions) {
+        actionArr.push(el["id"])
+      }
+      console.log("groupedData", groupedData)
+      let copyOfGroupedData = cloneDeep(groupedData)
+      let orderedActionsOfRequest = copyOfGroupedData["request"]["orderedActions"]
 
+      let difference = orderedActionsOfRequest
+        .filter((x: any) => !actionArr.includes(x))
+        .concat(actionArr.filter((x: any) => !orderedActionsOfRequest.includes(x)));
+      Object.values(copyOfGroupedData).map((cog: any) => {
+        if (cog.columnName === 'request') {
+          cog.orderedActions = [...cog.orderedActions, ...difference]
+        }
+      })
 
-const ColumnList: React.FC = () => {
-
-  const { loading, data, error } = useQuery(GET_ALL_COLUMNS)
-  const [renderData, setRenderData] = React.useState<any[]>([])
-
-
-  React.useEffect(() => {
-    if (!loading && data) {
-      let groupedData = getItemsByCategories(data.getAllColumns, "columnName");
-      setRenderData(groupedData)
+      setRenderData(copyOfGroupedData)
     }
-  }, [loading, data])
+    return () => ac.abort();
+  }, [columnLoading, actionLoading, columnData, actionData])
 
+  useEffect(() => {
+    const ac = new AbortController();
+    if (renderData && actionData) {
+      let copyOfRenderData: any = cloneDeep(renderData)
+      let finishedActions = copyOfRenderData["finished"]?.orderedActions // optional chaining
+      let ecoArr: any[] = []
+
+      for (const el of actionData?.getAllActions) {
+        if (finishedActions?.includes(el.id)) {
+          ecoArr.push(el["ecopoints"])
+        }
+      }
+      let sum = ecoArr?.reduce((a, b) => a + b, 0)
+      console.log(sum)
+      setPoints(sum)
+    }
+    return () => ac.abort();
+  }, [renderData, actionData, setPoints])
 
   const getItemsByCategories = (objectArray: any, property: any) => {
     return objectArray.reduce((acc: any, obj: any) => {
@@ -48,7 +82,6 @@ const ColumnList: React.FC = () => {
       return acc;
     }, {});
   };
-
 
 
   const onDragEnd = ({ source, destination }: DropResult) => {
@@ -95,7 +128,6 @@ const ColumnList: React.FC = () => {
         (_: any, idx: number) => idx !== source.index
       )
 
-
       // Create a new start column
       const newStartCol = {
         columnName: startColumnData.columnName,
@@ -108,14 +140,11 @@ const ColumnList: React.FC = () => {
 
       newEndList.splice(destination.index, 0, startColumnData.orderedActions[source.index])
 
-
-
       //   Create a new end column
       const newEndCol = {
         columnName: endColumnData.columnName,
         orderedActions: newEndList
       }
-      console.log("newEndCol: ", newEndCol)
 
       //   Update the state
       setRenderData((state: any) => ({
@@ -139,13 +168,13 @@ const ColumnList: React.FC = () => {
           Object.values(renderData).map((col: any, index: any) => {
             return (
               <Grid key={col.columnName} item xs={3} className={classes.root} >
-                <Column index={index} col={col} />
+                <Column index={index} key={col.columnName} col={col} />
               </Grid>
             )
           })
         }
-      </Grid>
-    </DragDropContext>
+      </Grid >
+    </DragDropContext >
   )
 }
 

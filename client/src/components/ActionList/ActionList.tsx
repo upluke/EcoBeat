@@ -55,7 +55,6 @@ interface ActionListInterface {
 function returnAddButtonIfRewards(title: string, classes: { [index: string]: string }) {
 
     if (title === "Rewards") {
-        console.log("hello")
         return <Button variant='contained' className={classes.add_button}>Add Item</Button>
     }
 }
@@ -82,7 +81,7 @@ const ActionList: React.FC<ActionListInterface> = ({ index, cards, title }) => {
                 {/* <SearchBar></SearchBar> */}
                 {returnAddButtonIfRewards(title, classes)}
 
-                <List >
+                <List  >
                     {cards.map((card, index) => card)}
                 </List>
             </Paper>

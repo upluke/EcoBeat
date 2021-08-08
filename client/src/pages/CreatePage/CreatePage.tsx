@@ -10,10 +10,12 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    flexGrow: 2,
+    // flexGrow: 2,
+    // flexGrow:1,
+    textAlign: 'center',
     padding: 0,
-    margin: 0,
-    height: "40%",//100vh
+
+
     backgroundColor: "#113537",
 
   },
@@ -21,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1rem"
   },
   list: {
-    width: '50%',
-    margin: '1rem',
+    width: '40%',
+    margin: 'auto',
   },
 
 
@@ -34,13 +36,14 @@ const CreatePage: React.FC = () => {
     <div>
       <NavBar loggedIn={true} points={points} />
       <Paper className={classes.root}>
-        <div className={classes.list}>
+        {/* <div className={classes.list}>
           <CreateUser />
           <UserList />
-        </div>
+        </div> */}
         <div className={classes.list}>
           <CreateAction />
           <ActionList />
+          <UserList />
         </div>
 
       </Paper>

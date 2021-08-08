@@ -15,9 +15,9 @@ const useSty = makeStyles({
     },
     title: {
         fontSize: 34,
-        // marginTop: '5%',
+        marginTop: '5%',
         color: '#EBEBEB',
-        textAlign:'center' 
+        textAlign:'center',
     },
     cardField: {
         width: '40%',
@@ -40,15 +40,16 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
         >
             {/* <NavBar loggedIn={false}/> */}
             <div>
-                <div style= {{flexShrink: 10,  margin: '6rem auto', textAlign:'center' }}>
+                <div style= {{flexShrink: 10,  marginLeft: '30%', marginTop: '5%'}}>
                     <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" /></a> 
                 </div>
-                {/* <Box className= {`${classes.flexColumn} ${classes.cardField}`} > */}
-                    <div className={classes.title}   >
+                <Box className= {`${classes.flexColumn} ${classes.cardField}`}>
+                    <div className= {classes.title} 
+                        style= {{marginLeft: '112%'}}
+                    >
                         Login
                     </div>
-                {/* </Box> */}
-                
+                </Box> 
             </div>
             <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%', marginTop: '2%'}}>
                 <TextField 
@@ -84,7 +85,7 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
 
                 ></TextField>
             </div>
-            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '35%', marginRight: '40%', marginTop: '2%'}}>
+            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '35%', marginRight: '40%', marginTop: '2%', paddingBottom: '5%'}}>
                 <Button 
                     size = 'medium'
                     variant = 'contained'

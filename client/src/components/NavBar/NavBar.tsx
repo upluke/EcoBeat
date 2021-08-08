@@ -105,7 +105,7 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn }) => {
                     <Toolbar className={classes.customizeToolbar}>
 
                         <Typography variant="h2" className={classes.title}>
-                            EcoBeat
+                            <Link to="/about">EcoBeat</Link>
                         </Typography>
 
                         <Box display='flex' flexGrow={1}>

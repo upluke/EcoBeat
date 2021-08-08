@@ -20,7 +20,7 @@ const useSty = makeStyles((theme:Theme) => ({
         flexDirection: 'column'
     },
     title: {
-        fontSize: 34,
+        fontSize: 30,
         marginTop: '5%',
         color: '#EBEBEB',
         textAlign:'center',
@@ -68,18 +68,18 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
         >
             <NavBar loggedIn={false} points={0} /> 
             <div>
-                <div style= {{flexShrink: 10, display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginTop: '5%'}}>
-                    <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com" /></a> 
+                <div style= {{flexShrink: 10, display: 'flex', flexDirection: 'column-reverse', textAlign: 'center', marginTop: '3%'}}>
+                    <a href="https://imgur.com/1OXbMyE"><img src="https://i.imgur.com/1OXbMyE.jpg" title="source: imgur.com"  width= "auto" height= "225px"/></a> 
                 </div>
                 <Box className= {`${classes.flexColumn} ${classes.cardField}`}>
                     <div className= {classes.title} 
-                        style= {{marginLeft: '112%'}}
+                        style= {{marginLeft: '119%'}}
                     >
                         Login
                     </div>
                 </Box> 
             </div>
-            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%', marginTop: '2%'}}>
+            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '39%', marginRight: '39%', marginTop: '2%'}}>
                 <TextField 
                     label="Username"
                     variant = 'filled'
@@ -88,7 +88,7 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
                         style: {
                             color: 'black',
                             backgroundColor: '#EBEBEB',
-                            padding: '15 30px',
+                            padding: '5 10px',
                         }
                     }}
                     type="text"
@@ -96,7 +96,7 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
                     onChange = {(ev: React.ChangeEvent<HTMLInputElement>): void => setUsername(ev.target.value)}
                 ></TextField>
             </div>
-            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '30%', marginRight: '34%'}}>
+            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '39%', marginRight: '39%'}}>
                 <TextField 
                     label="Email"
                     variant= 'filled'
@@ -104,7 +104,7 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
                         style: {
                             color: 'black',
                             backgroundColor: '#EBEBEB',
-                            padding: '15 30px',
+                            padding: '5 10px',
                         }
                     }} 
                     type="text"
@@ -113,20 +113,19 @@ export const LoginPage: React.FC<{onClick?: React.MouseEventHandler<HTMLElement>
 
                 ></TextField>
             </div>
-            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '35%', marginRight: '40%', marginTop: '2%', paddingBottom: '5%'}}>
+            <div style= {{display: 'flex', flexDirection: 'column-reverse', marginLeft: '44.3%', marginRight: '44.3%', marginTop: '1%', paddingBottom: '1%'}}>
                 <Button 
                     size = 'medium'
                     variant = 'contained'
                     // onClick= {HomePage}
                     style = {{
                         backgroundColor: '#2CF9AC',
-                        padding: "10px 20px",
                         color: 'black'
                     }}
-                ><Link style={{textDecoration:"none"}} to="/about"> LOGIN</Link></Button>
+                ><Link style={{textDecoration:"none", color: 'black'}} to="/about"> LOGIN</Link></Button>
             </div>
-            <div style={{margin:"0 auto" }}>
-                <button type="button" onClick={handleOpen} style = {{backgroundColor: '#2CF9AC',padding: "10px 20px",color: 'black'}}>
+            <div style={{margin:"0 auto", marginBottom: '3%'}}>
+                <button type="button" onClick={handleOpen} style = {{backgroundColor: '#2CF9AC', padding: "10px 20px", color: 'black', marginBottom: '3%', borderRadius: '5px', borderColor: '#2CF9AC'}}>
                     CREATE A NEW USER
                 </button>
                 <Modal

@@ -17,7 +17,7 @@ import { LoginPage } from './pages/LoginPage/LoginPage';
 
 import Dashboard from './authTesting/Dashboard/Dashboard';
 import Preferences from './authTesting/Preferences/Preferences';
-
+import Login from './authTesting/Login';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql', // link to the graphql server
@@ -30,8 +30,12 @@ const client = new ApolloClient({
 
 function App(){
 
+  const [token, setToken]=useState()
   
- 
+  if(!token){
+    return <Login />
+  }
+
   return (
     // <ApolloProvider client={client}>
     //    <Router>

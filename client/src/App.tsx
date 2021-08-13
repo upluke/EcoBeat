@@ -10,10 +10,13 @@ import {
 import DNDPage from './pages/DNDPage';
 import CreatePage from './pages/CreatePage';
 
-import { BrowserRouter as Router, Route} from "react-router-dom";
+// import { BrowserRouter, BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 import AboutPage from './pages/AboutPage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
- 
+
+import Dashboard from './authTesting/Dashboard/Dashboard';
+import Preferences from './authTesting/Preferences/Preferences';
 
 
 const client = new ApolloClient({
@@ -30,21 +33,34 @@ function App(){
   
  
   return (
-    <ApolloProvider client={client}>
-       <Router>
-      <div className="App">
-        {/* <h1>Lou Team</h1> */}
-        {/* <Route exact path="/" component={HomePage} /> */}
-        <Route exact path="/" component={LoginPage} />
-        <Route exact path={"/about"} component={AboutPage} />
-        <Route exact path="/create" component={CreatePage} />
-        <Route exact path="/ndn" component={DNDPage} />
+    // <ApolloProvider client={client}>
+    //    <Router>
+    //   <div className="App">
+    //     {/* <h1>Lou Team</h1> */}
+    //     {/* <Route exact path="/" component={HomePage} /> */}
+    //     <Route exact path="/" component={LoginPage} />
+    //     <Route exact path={"/about"} component={AboutPage} />
+    //     <Route exact path="/create" component={CreatePage} />
+    //     <Route exact path="/ndn" component={DNDPage} />
       
-        {/* <HomePage />
-        <TempPage /> */}
-      </div>
-      </Router>
-    </ApolloProvider>
+    //     {/* <HomePage />
+    //     <TempPage /> */}
+    //   </div>
+    //   </Router>
+    // </ApolloProvider>
+    <div>
+      <h1>Auth testing</h1>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route path="/preferences">
+            <Preferences />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 

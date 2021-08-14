@@ -6,7 +6,7 @@ interface LoginInterface {
   }
 
 
-export default function Login<LoginInterface>(){
+  const Login:React.FC<LoginInterface>=({setToken})=>{
     return(
         <div >
             <h1>Please log in </h1>
@@ -26,3 +26,4 @@ export default function Login<LoginInterface>(){
         </div>
     )
 }
+export default Login

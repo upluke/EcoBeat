@@ -12,7 +12,7 @@ interface LoginInterface {
             <h1>Please log in </h1>
             <form>
                 <label>
-                    Username
+                    username
                     <input type="text" />
                 </label>
                 <label>

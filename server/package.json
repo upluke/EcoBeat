@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "App that enhances environmental awareness",
   "main": "server.js",
+ 
   "scripts": {
     "start": "node ./dist/index.ts",
+    "start-auth": "ts-node ./src/AuthTesting/server.ts",
     "dev": "nodemon ./src/index.ts",
     "build": "tsc -p ."
   },

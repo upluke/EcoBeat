@@ -25,12 +25,19 @@ const client = new ApolloClient({
 });
 
  
- 
+function setToken(userToken:any){
+  sessionStorage.setItem('token', JSON.stringify(userToken))
+}
+function getToken(){
+  const tokenString:any=sessionStorage.getItem('token')
+  const userToken=JSON.parse(tokenString)
+  return userToken?.token
+}
  
 
 function App(){
 
-  const [token, setToken]=useState<any>()
+  const token=getToken()
   
   if(!token){
     return <Login setToken={setToken} />

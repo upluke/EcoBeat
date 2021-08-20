@@ -18,6 +18,7 @@ import { LoginPage } from './pages/LoginPage/LoginPage';
 import Dashboard from './authTesting/Dashboard/Dashboard';
 import Preferences from './authTesting/Preferences/Preferences';
 import Login from './authTesting/Login';
+import useToken from './authTesting/CustomHook/useToken';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql', // link to the graphql server
@@ -28,16 +29,11 @@ const client = new ApolloClient({
 function setToken(userToken:any){
   sessionStorage.setItem('token', JSON.stringify(userToken))
 }
-function getToken(){
-  const tokenString:any=sessionStorage.getItem('token')
-  const userToken=JSON.parse(tokenString)
-  return userToken?.token
-}
- 
+
 
 function App(){
 
-  const token=getToken()
+  const {token, setToken} =useToken()
   
   if(!token){
     return <Login setToken={setToken} />

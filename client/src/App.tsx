@@ -10,15 +10,15 @@ import {
 import DNDPage from './pages/DNDPage';
 import CreatePage from './pages/CreatePage';
 
-// import { BrowserRouter, BrowserRouter as Router, Route} from "react-router-dom";
-import { BrowserRouter, Route, Switch} from "react-router-dom";
+import { BrowserRouter, BrowserRouter as Router, Route} from "react-router-dom";
+// import { BrowserRouter, Route, Switch} from "react-router-dom";
 import AboutPage from './pages/AboutPage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
 
-import Dashboard from './authTesting/Dashboard/Dashboard';
-import Preferences from './authTesting/Preferences/Preferences';
-import Login from './authTesting/Login';
-import useToken from './authTesting/CustomHook/useToken';
+// import Dashboard from './authTesting/Dashboard/Dashboard';
+// import Preferences from './authTesting/Preferences/Preferences';
+// import Login from './authTesting/Login';
+// import useToken from './authTesting/CustomHook/useToken';
 
 const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql', // link to the graphql server
@@ -26,48 +26,48 @@ const client = new ApolloClient({
 });
 
  
-function setToken(userToken:any){
-  sessionStorage.setItem('token', JSON.stringify(userToken))
-}
+// function setToken(userToken:any){
+//   sessionStorage.setItem('token', JSON.stringify(userToken))
+// }
 
 
 function App(){
 
-  const {token, setToken} =useToken()
+  // const {token, setToken} =useToken()
   
-  if(!token){
-    return <Login setToken={setToken} />
-  }
+  // if(!token){
+  //   return <Login setToken={setToken} />
+  // }
 
   return (
-    // <ApolloProvider client={client}>
-    //    <Router>
-    //   <div className="App">
-    //     {/* <h1>Lou Team</h1> */}
-    //     {/* <Route exact path="/" component={HomePage} /> */}
-    //     <Route exact path="/" component={LoginPage} />
-    //     <Route exact path={"/about"} component={AboutPage} />
-    //     <Route exact path="/create" component={CreatePage} />
-    //     <Route exact path="/ndn" component={DNDPage} />
+    <ApolloProvider client={client}>
+       <Router>
+      <div className="App">
+        {/* <h1>Lou Team</h1> */}
+        {/* <Route exact path="/" component={HomePage} /> */}
+        <Route exact path="/" component={LoginPage} />
+        <Route exact path={"/about"} component={AboutPage} />
+        <Route exact path="/create" component={CreatePage} />
+        <Route exact path="/ndn" component={DNDPage} />
       
-    //     {/* <HomePage />
-    //     <TempPage /> */}
-    //   </div>
-    //   </Router>
-    // </ApolloProvider>
-    <div>
-      <h1>Auth testing</h1>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/preferences">
-            <Preferences />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </div>
+        {/* <HomePage />
+        <TempPage /> */}
+      </div>
+      </Router>
+    </ApolloProvider>
+    // <div>
+    //   <h1>Auth testing</h1>
+    //   <BrowserRouter>
+    //     <Switch>
+    //       <Route path="/dashboard">
+    //         <Dashboard />
+    //       </Route>
+    //       <Route path="/preferences">
+    //         <Preferences />
+    //       </Route>
+    //     </Switch>
+    //   </BrowserRouter>
+    // </div>
   );
 }
 

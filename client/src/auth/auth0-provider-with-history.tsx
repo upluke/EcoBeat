@@ -12,7 +12,7 @@ const Auth0ProviderWithHistory:React.FC<childrenType> = ({ children }) => {
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
   const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
   const history = useHistory();
-  
+  console.log(window.location.pathname,"---")
   const onRedirectCallback = (appState:any) => {
     history.push(appState?.returnTo || window.location.pathname);
   };

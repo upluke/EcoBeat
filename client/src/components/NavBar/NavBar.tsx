@@ -12,6 +12,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Box from '@material-ui/core/Box';
 import Coin from '../CoinIcon/Coin';
 import { Link } from "react-router-dom";
+import AuthenticationButton from '../AuthenticationButton';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -151,6 +152,9 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn, points, loginUser }) => {
                             </Typography>
                             <Typography className={classes.nav_item}>
                                 <Link to="/about" className={classes.link}> About</Link>
+                            </Typography>
+                            <Typography>
+                                 <AuthenticationButton/>
                             </Typography>
                         </Box>
 

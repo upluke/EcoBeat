@@ -10,11 +10,12 @@ interface childrenType{
 const Auth0ProviderWithHistory:React.FC<childrenType> = ({ children }) => {
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-  const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
+  // const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
   const history = useHistory();
   console.log(domain, clientId)
   const onRedirectCallback = (appState:any) => {
-    history.push(appState?.returnTo || window.location.pathname);
+    console.log("debug in history",appState)
+    // history.push(appState?.returnTo || window.location.pathname);
   };
 
   return (
@@ -23,7 +24,7 @@ const Auth0ProviderWithHistory:React.FC<childrenType> = ({ children }) => {
       clientId={clientId!}
       redirectUri={window.location.origin}
       onRedirectCallback={onRedirectCallback}
-      audience={audience}
+      // audience={audience}
     >
       {children}
     </Auth0Provider>

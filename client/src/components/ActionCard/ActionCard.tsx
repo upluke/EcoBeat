@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -33,15 +32,13 @@ const useStyles = makeStyles({
 
 });
 
-export interface ActionCardInterface {
+interface ActionCardInterface {
     actionDescription: string;
     ecopoints: number;
 }
 
 const ActionCard: React.FC<ActionCardInterface> = ({ actionDescription, ecopoints }) => {
     const classes = useStyles();
-
-
     return (
         <Card className={clsx(classes.root, classes.palette)} style={{ marginTop: 12 }}>
             <CardContent>

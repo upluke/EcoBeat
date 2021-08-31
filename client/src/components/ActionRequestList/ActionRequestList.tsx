@@ -6,9 +6,13 @@ import { List } from '@material-ui/core'
 import { Divider } from '@material-ui/core'
 import Action from '../Action/Action'
 
- 
+// interface ActionCardInterface {
+//     id:string;
+//     actionDescription: string;
+//     ecopoints: number;
+// }
 
-const ActionList: React.FC=()=>{
+const ActionList: React.FC =()=>{
     const {loading,data, error}=useQuery(GET_ALL_ACTIONS)
  
     if (loading) return <h1>Loading...</h1>;
@@ -18,6 +22,7 @@ const ActionList: React.FC=()=>{
             <List style={{backgroundColor:"#113537"}}>
             {data&&
                 data.getAllActions.map((action?:any)=>{
+                    console.log(action,"action in actioncard")
                     return (
                         <>
                         <Action {...action}/>

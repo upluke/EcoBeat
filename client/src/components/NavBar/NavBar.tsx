@@ -148,7 +148,7 @@ const NavBar: React.FC<NavBarInterface> = ({ loggedIn, points, loginUser }) => {
                                 <Link to="/create" className={classes.link}> Action Creator</Link>
                             </Typography>
                             <Typography className={classes.nav_item}>
-                                <Link to="/ndn" className={classes.link}> HomePage</Link>
+                                <Link to="/ndn" className={classes.link}> Home</Link>
                             </Typography>
                             <Typography className={classes.nav_item}>
                                 <Link to="/about" className={classes.link}> About</Link>

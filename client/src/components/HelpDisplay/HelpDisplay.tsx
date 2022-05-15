@@ -24,18 +24,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const helpMessages = [
     `
-    Request:
-
-    You can drag tasks in the Request Panel to the Accepted Panel,
-    to accept to take on those tasks.
-    
-    If you change your mind, just drag it back to the Request Panel.
-
-    Alternatively, you can drag tasks straight to the Finished panel if you alread finished it.
-    
-    You can spend your Ecocoins in the Rewards panel!
-    `,
-    `
     Accepted:
   
     You can drag tasks in the Accepted Panel to the Finished Panel,
@@ -51,7 +39,20 @@ const helpMessages = [
     Deliver your tasks here to get paid in Ecocoins for your efforts!
 
     You can spend your Ecocoins in the Rewards panel!
+    `,
     `
+    Request:
+
+    You can drag tasks in the Request Panel to the Accepted Panel,
+    to accept to take on those tasks.
+    
+    If you change your mind, just drag it back to the Request Panel.
+
+    Alternatively, you can drag tasks straight to the Finished panel if you alread finished it.
+    
+    You can spend your Ecocoins in the Rewards panel!
+    `
+    
 ]
 
 export interface HelpDisplayInterface {
